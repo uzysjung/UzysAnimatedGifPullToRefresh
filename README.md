@@ -1,5 +1,8 @@
 UzysAnimatedGifPullToRefresh
 ============================
+[![License MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://raw.githubusercontent.com/uzysjung/UzysAnimatedGifPullToRefresh/master/LICENSE)
+[![CocoaPods](https://img.shields.io/cocoapods/v/UzysAnimatedGifPullToRefresh.svg?style=flat)](https://github.com/uzysjung/UzysAnimatedGifPullToRefresh)
+[![License MIT](https://img.shields.io/badge/contact-@Uzysjung-blue.svg?style=flat)](http://uzys.net)
 
 Add PullToRefresh using animated GIF to any scrollView with just simple code
 
@@ -87,10 +90,10 @@ adding PullToRefreshActionHandler
 ## License
  - See [LICENSE](https://github.com/uzysjung/UzysCircularProgressPullToRefresh/blob/master/LICENSE).
 
-# Acknowledgements
+## Acknowledgements
 This application makes use of the following third party libraries:
 
-## AnimatedGIFImageSerialization
+### AnimatedGIFImageSerialization
 Copyright (c) 2014 Mattt Thompson (http://mattt.me/)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
