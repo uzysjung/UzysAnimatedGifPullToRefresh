@@ -3,7 +3,87 @@ UzysAnimatedGifPullToRefresh
 
 Add PullToRefresh using animated GIF to any scrollView with just simple code
 
+**UzysAnimatedGifPullToRefresh features:**
 
+* simple to use.
+* Support CocoaPods.
+* ARC Only (if your project doesn't use ARC , Project -> Build Phases Tab -> Compile Sources Section -> Double Click on the file name Then add -fno-objc-arc to the popup window.)
+
+
+## Installation
+1. UzysAnimatedGifPullToRefresh in your app is via CocoaPods.
+2. Copy over the files libary folder to your project folder
+
+## Usage
+###Import header.
+
+``` objective-c
+#import "UIScrollView+UzysAnimatedGifPullToRefresh.h"
+```
+
+### Initialize
+adding PullToRefreshActionHandler
+
+``` objective-c
+-(void)viewWillAppear:(BOOL)animated
+{
+    __weak typeof(self) weakSelf =self;
+    [self.tableView addPullToRefreshActionHandler:^{
+        [weakSelf insertRowAtTop];
+    }
+    ProgressImagesGifName:@"spinner_dropbox@2x.gif" 
+    LoadingImagesGifName:@"run@2x.gif" 
+    ProgressScrollThreshold:60 
+    LoadingImageFrameRate:30];
+}
+```
+### programmatically trigger PullToRefresh
+``` objective-c
+[_tableView triggerPullToRefresh];
+```
+
+### stop PullToRefresh Activity Animation
+``` objective-c
+[_tableView stopRefreshAnimation];
+```
+
+
+### option
+#### Progress : Animated GIF , Loading : Animated GIF
+``` objective-c
+- (void)addPullToRefreshActionHandler:(actionHandler)handler
+                ProgressImagesGifName:(NSString *)progressGifName
+                 LoadingImagesGifName:(NSString *)loadingGifName
+              ProgressScrollThreshold:(NSInteger)threshold;
+```
+#### Progress : Animated GIF , Loading : UIActivitiyIndicator
+``` objective-c
+- (void)addPullToRefreshActionHandler:(actionHandler)handler
+                ProgressImagesGifName:(NSString *)progressGifName
+              ProgressScrollThreshold:(NSInteger)threshold;
+```
+
+#### Progress : Array images , Loading : UIActivitiyIndicator
+``` objective-c
+- (void)addPullToRefreshActionHandler:(actionHandler)handler
+                       ProgressImages:(NSArray *)progressImages
+              ProgressScrollThreshold:(NSInteger)threshold;
+```
+
+#### Progress : Array images , Loading : Array images
+``` objective-c
+- (void)addPullToRefreshActionHandler:(actionHandler)handler
+                       ProgressImages:(NSArray *)progressImages
+                        LoadingImages:(NSArray *)loadingImages
+                    ProgressScrollThreshold:(NSInteger)threshold
+               LoadingImagesFrameRate:(NSInteger)lframe;
+```
+
+## Contact
+ - [Uzys.net](http://uzys.net)
+
+## License
+ - See [LICENSE](https://github.com/uzysjung/UzysCircularProgressPullToRefresh/blob/master/LICENSE).
 
 # Acknowledgements
 This application makes use of the following third party libraries:
