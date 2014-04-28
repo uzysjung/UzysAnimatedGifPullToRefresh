@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.license     = { :type => "MIT", :file => "LICENSE" }
   
   s.platform     = :ios
-  s.source       = { :git => "https://github.com/uzysjung/UzysCircularProgressPullToRefresh.git", :tag => "0.9.0" }
+  s.source       = { :git => "https://github.com/uzysjung/UzysAnimatedGifPullToRefresh.git", :tag => "0.9.0" }
   s.requires_arc = true
   s.source_files = 'UzysAnimatedGifPullToRefresh/UzysAnimatedGifPullToRefresh/Library'
   s.public_header_files = 'UzysAnimatedGifPullToRefresh/UzysAnimatedGifPullToRefresh/Library/*.h'

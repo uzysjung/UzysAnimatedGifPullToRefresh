@@ -51,7 +51,7 @@
 - (void)_commonInit
 {
     self.contentMode = UIViewContentModeRedraw;
-    self.state = UZYSPullToRefreshStateNone;
+    self.state = UZYSGIFPullToRefreshStateNone;
     self.backgroundColor = [UIColor clearColor];
     
     NSAssert([self.pImgArrProgress.lastObject isKindOfClass:[UIImage class]], @"pImgArrProgress Array has object that is not image");
@@ -183,32 +183,32 @@
     
     self.center = CGPointMake(self.center.x, (contentOffset.y+ self.originalTopInset)/2);
     switch (_state) {
-        case UZYSPullToRefreshStateStopped: //finish
+        case UZYSGIFPullToRefreshStateStopped: //finish
             //            NSLog(@"Stoped");
             break;
-        case UZYSPullToRefreshStateNone: //detect action
+        case UZYSGIFPullToRefreshStateNone: //detect action
         {
             //            NSLog(@"None");
             if(self.scrollView.isDragging && yOffset <0 )
             {
-                self.state = UZYSPullToRefreshStateTriggering;
+                self.state = UZYSGIFPullToRefreshStateTriggering;
             }
         }
-        case UZYSPullToRefreshStateTriggering: //progress
+        case UZYSGIFPullToRefreshStateTriggering: //progress
         {
             //            NSLog(@"trigering");
             if(self.progress >= 1.0)
-                self.state = UZYSPullToRefreshStateTriggered;
+                self.state = UZYSGIFPullToRefreshStateTriggered;
         }
             break;
-        case UZYSPullToRefreshStateTriggered: //fire actionhandler
+        case UZYSGIFPullToRefreshStateTriggered: //fire actionhandler
             //            NSLog(@"trigered");
             if(self.scrollView.dragging == NO && prevProgress > 0.99)
             {
                 [self actionTriggeredState];
             }
             break;
-        case UZYSPullToRefreshStateLoading: //wait until stopIndicatorAnimation
+        case UZYSGIFPullToRefreshStateLoading: //wait until stopIndicatorAnimation
 
             break;
         default:
@@ -238,7 +238,7 @@
 
 -(void)actionStopState
 {
-    self.state = UZYSPullToRefreshStateNone;
+    self.state = UZYSGIFPullToRefreshStateNone;
     [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut|UIViewAnimationOptionAllowUserInteraction animations:^{
         if(self.pImgArrLoading.count>0)
         {
@@ -272,7 +272,7 @@
 }
 -(void)actionTriggeredState
 {
-    self.state = UZYSPullToRefreshStateLoading;
+    self.state = UZYSGIFPullToRefreshStateLoading;
     
     [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut|UIViewAnimationOptionAllowUserInteraction animations:^{
         self.imageViewProgress.alpha = 0.0;
