@@ -3,6 +3,8 @@ UzysAnimatedGifPullToRefresh
 
 Add PullToRefresh using animated GIF to any scrollView with just simple code
 
+![Screenshot](https://raw.githubusercontent.com/uzysjung/UzysAnimatedGifPullToRefresh/master/UzysAnimatedGifPullToRefresh.gif)
+
 **UzysAnimatedGifPullToRefresh features:**
 
 * simple to use.
