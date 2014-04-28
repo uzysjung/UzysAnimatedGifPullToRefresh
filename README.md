@@ -110,3 +110,9 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+
+## Example Project Resource From
+* https://dribbble.com/shots/1418440-Twisted-gif?list=searches&tag=animated_gif&offset=3
+* https://dribbble.com/shots/1262399-The-End-gif?list=searches&tag=animated_gif&offset=51
+* https://dribbble.com/shots/1421536-Cupido
+* http://pixelbuddha.net/freebie/flat-preloaders
