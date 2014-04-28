@@ -35,6 +35,7 @@
 - (void)addPullToRefreshActionHandler:(actionHandler)handler
                 ProgressImagesGifName:(NSString *)progressGifName
               ProgressScrollThreshold:(NSInteger)threshold;
+
 - (void)addPullToRefreshActionHandler:(actionHandler)handler
                 ProgressImagesGifName:(NSString *)progressGifName
                  LoadingImagesGifName:(NSString *)loadingGifName

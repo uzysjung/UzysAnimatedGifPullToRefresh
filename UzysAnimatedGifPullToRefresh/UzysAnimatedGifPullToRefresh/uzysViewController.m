@@ -175,7 +175,7 @@
         [self.tableView addPullToRefreshActionHandler:^{
             [weakSelf insertRowAtTop];
             
-        } ProgressImagesGifName:@"cupido@2x.gif" LoadingImagesGifName:@"jgr@2x.gif" ProgressScrollThreshold:110];
+        } ProgressImagesGifName:@"cupido@2x.gif" LoadingImagesGifName:@"jgr@2x.gif" ProgressScrollThreshold:90];
     }
     else if([[self.pData objectAtIndex:indexPath.row] isKindOfClass:[NSString class]] && [[self.pData objectAtIndex:indexPath.row] isEqualToString:@"3"])
     {
