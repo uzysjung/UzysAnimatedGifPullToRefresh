@@ -60,7 +60,7 @@ __attribute__((overloadable)) UIImage * UIImageWithAnimatedGIFData(NSData *data,
         }
 
         CFRelease(imageSource);
-        calculatedDuration = calculatedDuration/numberOfFrames;
+
         return [UIImage animatedImageWithImages:mutableImages duration:(duration <= 0.0f ? calculatedDuration : duration)];
     }
     _error: {

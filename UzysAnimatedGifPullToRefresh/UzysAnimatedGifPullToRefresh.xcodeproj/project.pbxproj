@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		9502C6E118F551DD001CEFE7 /* UzysAnimatedGifActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9502C6E018F551DD001CEFE7 /* UzysAnimatedGifActivityIndicator.m */; };
-		955150AF18FE5D2900EF20DD /* AnimatedGIFImageSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 955150AE18FE5D2900EF20DD /* AnimatedGIFImageSerialization.m */; };
 		955150B618FE77C300EF20DD /* image_Progress@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = 955150B418FE77C300EF20DD /* image_Progress@2x.gif */; };
 		955150B818FE82CD00EF20DD /* loadinginfinite@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = 955150B718FE82CD00EF20DD /* loadinginfinite@2x.gif */; };
 		955150BA18FE849F00EF20DD /* simpsonProgress@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = 955150B918FE849F00EF20DD /* simpsonProgress@2x.gif */; };
@@ -114,6 +113,7 @@
 		95F22CE3190A5F860022DD8D /* Preloader_9_00080@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95F22C90190A5F860022DD8D /* Preloader_9_00080@2x.png */; };
 		95F22CE4190A5F860022DD8D /* Preloader_9_00081@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95F22C91190A5F860022DD8D /* Preloader_9_00081@2x.png */; };
 		95F22CE5190A5F860022DD8D /* Preloader_9_00082@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95F22C92190A5F860022DD8D /* Preloader_9_00082@2x.png */; };
+		CE1FD89DCE194AF7A5E9D223 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 617B774758074C728B20BD24 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,10 +127,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		617B774758074C728B20BD24 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		6C635A4B5DCF42FA974449E7 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		9502C6DF18F551DD001CEFE7 /* UzysAnimatedGifActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UzysAnimatedGifActivityIndicator.h; sourceTree = "<group>"; };
 		9502C6E018F551DD001CEFE7 /* UzysAnimatedGifActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UzysAnimatedGifActivityIndicator.m; sourceTree = "<group>"; };
-		955150AD18FE5D2900EF20DD /* AnimatedGIFImageSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimatedGIFImageSerialization.h; sourceTree = "<group>"; };
-		955150AE18FE5D2900EF20DD /* AnimatedGIFImageSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimatedGIFImageSerialization.m; sourceTree = "<group>"; };
 		955150B018FE6B1200EF20DD /* UzysAnimatedGifPullToRefreshConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UzysAnimatedGifPullToRefreshConfiguration.h; sourceTree = "<group>"; };
 		955150B418FE77C300EF20DD /* image_Progress@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "image_Progress@2x.gif"; sourceTree = "<group>"; };
 		955150B718FE82CD00EF20DD /* loadinginfinite@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "loadinginfinite@2x.gif"; sourceTree = "<group>"; };
@@ -253,6 +253,7 @@
 				95F0EA9618F3906E00EB27DF /* CoreGraphics.framework in Frameworks */,
 				95F0EA9818F3906E00EB27DF /* UIKit.framework in Frameworks */,
 				95F0EA9418F3906E00EB27DF /* Foundation.framework in Frameworks */,
+				CE1FD89DCE194AF7A5E9D223 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,15 +286,6 @@
 			path = UzysAnimatedGifPullToRefresh/resource;
 			sourceTree = "<group>";
 		};
-		955150AC18FE5D2900EF20DD /* AnimatedGIFImageSerialization */ = {
-			isa = PBXGroup;
-			children = (
-				955150AD18FE5D2900EF20DD /* AnimatedGIFImageSerialization.h */,
-				955150AE18FE5D2900EF20DD /* AnimatedGIFImageSerialization.m */,
-			);
-			path = AnimatedGIFImageSerialization;
-			sourceTree = "<group>";
-		};
 		95F0EA8718F3906E00EB27DF = {
 			isa = PBXGroup;
 			children = (
@@ -303,6 +295,7 @@
 				95F0EAB818F3906E00EB27DF /* UzysAnimatedGifPullToRefreshTests */,
 				95F0EA9218F3906E00EB27DF /* Frameworks */,
 				95F0EA9118F3906E00EB27DF /* Products */,
+				6C635A4B5DCF42FA974449E7 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -322,6 +315,7 @@
 				95F0EA9518F3906E00EB27DF /* CoreGraphics.framework */,
 				95F0EA9718F3906E00EB27DF /* UIKit.framework */,
 				95F0EAB218F3906E00EB27DF /* XCTest.framework */,
+				617B774758074C728B20BD24 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -372,7 +366,6 @@
 		95F0EAC818F3909C00EB27DF /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				955150AC18FE5D2900EF20DD /* AnimatedGIFImageSerialization */,
 				95F0EAD118F390BE00EB27DF /* UIScrollView+UzysAnimatedGifPullToRefresh.h */,
 				95F0EAD218F390BE00EB27DF /* UIScrollView+UzysAnimatedGifPullToRefresh.m */,
 				9502C6DF18F551DD001CEFE7 /* UzysAnimatedGifActivityIndicator.h */,
@@ -480,9 +473,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 95F0EAC218F3906E00EB27DF /* Build configuration list for PBXNativeTarget "UzysAnimatedGifPullToRefresh" */;
 			buildPhases = (
+				59694B166C5C49F5B9281C9D /* Check Pods Manifest.lock */,
 				95F0EA8C18F3906E00EB27DF /* Sources */,
 				95F0EA8D18F3906E00EB27DF /* Frameworks */,
 				95F0EA8E18F3906E00EB27DF /* Resources */,
+				93A0CC4A49D1455DAC524952 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -656,12 +651,44 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		59694B166C5C49F5B9281C9D /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		93A0CC4A49D1455DAC524952 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		95F0EA8C18F3906E00EB27DF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				955150AF18FE5D2900EF20DD /* AnimatedGIFImageSerialization.m in Sources */,
 				95F0EAD318F390BE00EB27DF /* UIScrollView+UzysAnimatedGifPullToRefresh.m in Sources */,
 				9502C6E118F551DD001CEFE7 /* UzysAnimatedGifActivityIndicator.m in Sources */,
 				95F0EAA018F3906E00EB27DF /* main.m in Sources */,
@@ -788,12 +815,14 @@
 		};
 		95F0EAC318F3906E00EB27DF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6C635A4B5DCF42FA974449E7 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UzysAnimatedGifPullToRefresh/UzysAnimatedGifPullToRefresh-Prefix.pch";
 				INFOPLIST_FILE = "UzysAnimatedGifPullToRefresh/UzysAnimatedGifPullToRefresh-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -801,12 +830,14 @@
 		};
 		95F0EAC418F3906E00EB27DF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6C635A4B5DCF42FA974449E7 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UzysAnimatedGifPullToRefresh/UzysAnimatedGifPullToRefresh-Prefix.pch";
 				INFOPLIST_FILE = "UzysAnimatedGifPullToRefresh/UzysAnimatedGifPullToRefresh-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

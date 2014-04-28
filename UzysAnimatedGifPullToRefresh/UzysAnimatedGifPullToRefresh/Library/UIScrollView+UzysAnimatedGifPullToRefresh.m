@@ -8,34 +8,11 @@
 
 #import "UIScrollView+UzysAnimatedGifPullToRefresh.h"
 #import <objc/runtime.h>
-#import "AnimatedGIFImageSerialization.h"
+#import <AnimatedGIFImageSerialization.h>
 static char UIScrollViewPullToRefreshView;
 
 @implementation UIScrollView (UzysAnimatedGifPullToRefresh)
 @dynamic pullToRefreshView, showPullToRefresh;
-
-//- (void)addPullToRefreshActionHandler:(actionHandler)handler
-//{
-//    if(self.pullToRefreshView == nil)
-//    {
-//        NSMutableArray *progress =[NSMutableArray array];
-//        for (int i=1;i<13;i++)
-//        {
-//            NSString *fname = [NSString stringWithFormat:@"loading_%02d",i];
-//            [progress addObject:[UIImage imageNamed:fname]];
-//        }
-//        UzysAnimatedGifActivityIndicator *view = [[UzysAnimatedGifActivityIndicator alloc] initWithProgressImages:progress LoadingImages:nil ProgressScrollThreshold:0 LoadingImagesFrameRate:20];
-//        view.pullToRefreshHandler = handler;
-//        view.scrollView = self;
-//        view.frame = CGRectMake((self.bounds.size.width - view.bounds.size.width)/2,
-//                                -view.bounds.size.height, view.bounds.size.width, view.bounds.size.height);
-//        view.originalTopInset = self.contentInset.top;
-//        [self addSubview:view];
-//        [self sendSubviewToBack:view];
-//        self.pullToRefreshView = view;
-//        self.showPullToRefresh = YES;
-//    }
-//}
 
 - (void)addPullToRefreshActionHandler:(actionHandler)handler
                        ProgressImages:(NSArray *)progressImages

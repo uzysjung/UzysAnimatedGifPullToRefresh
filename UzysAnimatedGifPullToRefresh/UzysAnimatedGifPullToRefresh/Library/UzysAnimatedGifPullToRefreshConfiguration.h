@@ -6,5 +6,5 @@
 //  Copyright (c) 2014년 Uzys. All rights reserved.
 //
 
-#define PulltoRefreshThreshold 50.0
+#define initialPulltoRefreshThreshold 50.0
 #define StartPosition -10.0

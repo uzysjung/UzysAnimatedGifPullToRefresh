@@ -1,0 +1,10 @@
+PODS:
+  - AnimatedGIFImageSerialization (0.0.1)
+
+DEPENDENCIES:
+  - AnimatedGIFImageSerialization (~> 0.0.1)
+
+SPEC CHECKSUMS:
+  AnimatedGIFImageSerialization: 334f7b882713b7336ba15106c92e4843e598358f
+
+COCOAPODS: 0.32.1

@@ -33,7 +33,7 @@
 {
     if(threshold <=0)
     {
-        threshold = PulltoRefreshThreshold;
+        threshold = initialPulltoRefreshThreshold;
     }
     UIImage *image1 = progressImg.firstObject;
     NSLog(@"image1 size %@ scale %f",NSStringFromCGSize(image1.size),image1.scale);
