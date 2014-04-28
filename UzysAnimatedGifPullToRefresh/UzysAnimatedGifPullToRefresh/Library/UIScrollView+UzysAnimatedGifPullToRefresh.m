@@ -70,7 +70,6 @@ static char UIScrollViewPullToRefreshView;
 - (void)addPullToRefreshActionHandler:(actionHandler)handler ProgressImagesGifName:(NSString *)progressGifName ProgressScrollThreshold:(NSInteger)threshold
 {
     UIImage *progressImage = [UIImage imageNamed:progressGifName];
-    NSLog(@"image count %d",progressImage.images.count);
     [self addPullToRefreshActionHandler:handler ProgressImages:progressImage.images ProgressScrollThreshold:threshold];
 }
 

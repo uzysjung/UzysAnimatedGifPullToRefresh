@@ -209,7 +209,13 @@
             }
             break;
         case UZYSGIFPullToRefreshStateLoading: //wait until stopIndicatorAnimation
-
+            
+            break;
+        case UZYSGIFPullToRefreshStateCanFinish:
+            if(self.progress < 0.01 && self.progress > -0.01)
+            {
+                self.state = UZYSGIFPullToRefreshStateNone;
+            }
             break;
         default:
             break;
@@ -238,7 +244,7 @@
 
 -(void)actionStopState
 {
-    self.state = UZYSGIFPullToRefreshStateNone;
+    self.state = UZYSGIFPullToRefreshStateCanFinish;
     [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut|UIViewAnimationOptionAllowUserInteraction animations:^{
         if(self.pImgArrLoading.count>0)
         {

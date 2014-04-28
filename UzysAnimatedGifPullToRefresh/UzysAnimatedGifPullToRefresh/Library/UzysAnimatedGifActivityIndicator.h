@@ -14,6 +14,7 @@ typedef NS_ENUM(NSUInteger, UZYSPullToRefreshState) {
     UZYSGIFPullToRefreshStateTriggering,
     UZYSGIFPullToRefreshStateTriggered,
     UZYSGIFPullToRefreshStateLoading,
+    UZYSGIFPullToRefreshStateCanFinish,
     
 };
 
