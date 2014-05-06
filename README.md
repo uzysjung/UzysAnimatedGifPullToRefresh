@@ -88,7 +88,7 @@ adding PullToRefreshActionHandler
  - [Uzys.net](http://uzys.net)
 
 ## License
- - See [LICENSE](https://github.com/uzysjung/UzysCircularProgressPullToRefresh/blob/master/LICENSE).
+ - See [LICENSE](https://github.com/uzysjung/UzysAnimatedGifPullToRefresh/blob/master/LICENSE).
 
 ## Acknowledgements
 This application makes use of the following third party libraries:
