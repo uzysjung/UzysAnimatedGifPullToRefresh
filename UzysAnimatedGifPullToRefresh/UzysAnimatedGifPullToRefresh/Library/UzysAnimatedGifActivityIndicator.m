@@ -79,8 +79,7 @@
         self.imageViewLoading.contentMode = UIViewContentModeScaleAspectFit;
         self.imageViewLoading.frame = self.bounds;
         self.imageViewLoading.animationImages = self.pImgArrLoading;
-        self.imageViewLoading.animationDuration = (CGFloat)(1.0/(CGFloat)self.LoadingFrameRate) * (CGFloat)self.imageViewLoading.animationImages.count;
-//        self.imageViewLoading.animationDuration = 1.0/(CGFloat)self.LoadingFrameRate;
+        self.imageViewLoading.animationDuration = (CGFloat)ceilf((1.0/(CGFloat)self.LoadingFrameRate) * (CGFloat)self.imageViewLoading.animationImages.count);
         self.imageViewLoading.alpha = 0;
         self.imageViewLoading.backgroundColor = [UIColor clearColor];
         
@@ -227,11 +226,9 @@
 
 - (void)willMoveToSuperview:(UIView *)newSuperview {
     if (self.superview && newSuperview == nil) {
-        //use self.superview, not self.scrollView. Why self.scrollView == nil here?
         UIScrollView *scrollView = (UIScrollView *)self.superview;
         if (scrollView.showPullToRefresh) {
             if (self.isObserving) {
-                //If enter this branch, it is the moment just before "SVPullToRefreshView's dealloc", so remove observer here
                 [scrollView removeObserver:self forKeyPath:@"contentOffset"];
                 [scrollView removeObserver:self forKeyPath:@"contentSize"];
                 [scrollView removeObserver:self forKeyPath:@"frame"];
@@ -305,10 +302,7 @@
     if(self.pullToRefreshHandler)
         self.pullToRefreshHandler();
 }
-//-(void)setLoadingImageAlpha:(CGFloat)alpha
-//{
-//    
-//}
+
 #pragma mark - public method
 - (void)stopIndicatorAnimation
 {
@@ -316,8 +310,6 @@
 }
 - (void)manuallyTriggered
 {
-//    [self setLayerOpacity:0.0];
-    
     UIEdgeInsets currentInsets = self.scrollView.contentInset;
     currentInsets.top = self.originalTopInset + self.bounds.size.height + 20.0;
     [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
@@ -330,21 +322,10 @@
 {
     CGRect rect = CGRectMake((self.scrollView.bounds.size.width - size.width)/2,
                              -size.height, size.width, size.height);
-
     self.frame=rect;
     self.activityIndicatorView.frame = self.bounds;
     self.imageViewProgress.frame = self.bounds;
     self.imageViewLoading.frame = self.bounds;
-    
 }
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 @end

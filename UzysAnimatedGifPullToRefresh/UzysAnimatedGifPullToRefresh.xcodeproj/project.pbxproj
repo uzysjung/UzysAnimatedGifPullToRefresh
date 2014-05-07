@@ -12,6 +12,7 @@
 		955150B818FE82CD00EF20DD /* loadinginfinite@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = 955150B718FE82CD00EF20DD /* loadinginfinite@2x.gif */; };
 		955150BA18FE849F00EF20DD /* simpsonProgress@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = 955150B918FE849F00EF20DD /* simpsonProgress@2x.gif */; };
 		95B8D25019050D9D007427D6 /* spinner_dropbox@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = 95B8D24F19050D9D007427D6 /* spinner_dropbox@2x.gif */; };
+		95DAEB0E1919C9B10018D3ED /* jgr@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = 95DAEB0D1919C9B10018D3ED /* jgr@2x.gif */; };
 		95F0EA9418F3906E00EB27DF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95F0EA9318F3906E00EB27DF /* Foundation.framework */; };
 		95F0EA9618F3906E00EB27DF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95F0EA9518F3906E00EB27DF /* CoreGraphics.framework */; };
 		95F0EA9818F3906E00EB27DF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95F0EA9718F3906E00EB27DF /* UIKit.framework */; };
@@ -28,7 +29,6 @@
 		95F0EABF18F3906E00EB27DF /* UzysAnimatedGifPullToRefreshTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F0EABE18F3906E00EB27DF /* UzysAnimatedGifPullToRefreshTests.m */; };
 		95F0EAD318F390BE00EB27DF /* UIScrollView+UzysAnimatedGifPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F0EAD218F390BE00EB27DF /* UIScrollView+UzysAnimatedGifPullToRefresh.m */; };
 		95F22B1B190A30830022DD8D /* run@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = 95F22B1A190A30830022DD8D /* run@2x.gif */; };
-		95F22B95190A5B170022DD8D /* jgr@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = 95F22B94190A5B170022DD8D /* jgr@2x.gif */; };
 		95F22B97190A5DB60022DD8D /* cupido@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = 95F22B96190A5DB60022DD8D /* cupido@2x.gif */; };
 		95F22C93190A5F860022DD8D /* Preloader_9_00000@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95F22C40190A5F860022DD8D /* Preloader_9_00000@2x.png */; };
 		95F22C94190A5F860022DD8D /* Preloader_9_00001@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95F22C41190A5F860022DD8D /* Preloader_9_00001@2x.png */; };
@@ -136,6 +136,7 @@
 		955150B718FE82CD00EF20DD /* loadinginfinite@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "loadinginfinite@2x.gif"; sourceTree = "<group>"; };
 		955150B918FE849F00EF20DD /* simpsonProgress@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "simpsonProgress@2x.gif"; sourceTree = "<group>"; };
 		95B8D24F19050D9D007427D6 /* spinner_dropbox@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "spinner_dropbox@2x.gif"; sourceTree = "<group>"; };
+		95DAEB0D1919C9B10018D3ED /* jgr@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "jgr@2x.gif"; sourceTree = "<group>"; };
 		95F0EA9018F3906E00EB27DF /* UzysAnimatedGifPullToRefresh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UzysAnimatedGifPullToRefresh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95F0EA9318F3906E00EB27DF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		95F0EA9518F3906E00EB27DF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -158,7 +159,6 @@
 		95F0EAD118F390BE00EB27DF /* UIScrollView+UzysAnimatedGifPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+UzysAnimatedGifPullToRefresh.h"; sourceTree = "<group>"; };
 		95F0EAD218F390BE00EB27DF /* UIScrollView+UzysAnimatedGifPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+UzysAnimatedGifPullToRefresh.m"; sourceTree = "<group>"; };
 		95F22B1A190A30830022DD8D /* run@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "run@2x.gif"; sourceTree = "<group>"; };
-		95F22B94190A5B170022DD8D /* jgr@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = "jgr@2x.gif"; path = "../../../../../../Desktop/jgr@2x.gif"; sourceTree = "<group>"; };
 		95F22B96190A5DB60022DD8D /* cupido@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "cupido@2x.gif"; sourceTree = "<group>"; };
 		95F22C40190A5F860022DD8D /* Preloader_9_00000@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Preloader_9_00000@2x.png"; sourceTree = "<group>"; };
 		95F22C41190A5F860022DD8D /* Preloader_9_00001@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Preloader_9_00001@2x.png"; sourceTree = "<group>"; };
@@ -273,9 +273,9 @@
 		9548EE0D18F7E7D900A2AA73 /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				95DAEB0D1919C9B10018D3ED /* jgr@2x.gif */,
 				95F22C3F190A5F860022DD8D /* Sprites */,
 				95F22B96190A5DB60022DD8D /* cupido@2x.gif */,
-				95F22B94190A5B170022DD8D /* jgr@2x.gif */,
 				95F22B1A190A30830022DD8D /* run@2x.gif */,
 				95B8D24F19050D9D007427D6 /* spinner_dropbox@2x.gif */,
 				955150B918FE849F00EF20DD /* simpsonProgress@2x.gif */,
@@ -554,6 +554,7 @@
 				95F22CCC190A5F860022DD8D /* Preloader_9_00057@2x.png in Resources */,
 				95F22CB6190A5F860022DD8D /* Preloader_9_00035@2x.png in Resources */,
 				95F22CC5190A5F860022DD8D /* Preloader_9_00050@2x.png in Resources */,
+				95DAEB0E1919C9B10018D3ED /* jgr@2x.gif in Resources */,
 				95F22C9C190A5F860022DD8D /* Preloader_9_00009@2x.png in Resources */,
 				95F22CC8190A5F860022DD8D /* Preloader_9_00053@2x.png in Resources */,
 				95F22CD4190A5F860022DD8D /* Preloader_9_00065@2x.png in Resources */,
@@ -606,7 +607,6 @@
 				95F22CD3190A5F860022DD8D /* Preloader_9_00064@2x.png in Resources */,
 				95F22CE3190A5F860022DD8D /* Preloader_9_00080@2x.png in Resources */,
 				95F22C9E190A5F860022DD8D /* Preloader_9_00011@2x.png in Resources */,
-				95F22B95190A5B170022DD8D /* jgr@2x.gif in Resources */,
 				95F22CC0190A5F860022DD8D /* Preloader_9_00045@2x.png in Resources */,
 				95F22CA0190A5F860022DD8D /* Preloader_9_00013@2x.png in Resources */,
 				95F22CBB190A5F860022DD8D /* Preloader_9_00040@2x.png in Resources */,
