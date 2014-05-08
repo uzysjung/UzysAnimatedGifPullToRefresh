@@ -114,7 +114,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
-## Example Project Resource From
+## Example Project Resources From
 * https://dribbble.com/shots/647290-Hold-on-a-sec-animated-Dropbox-logo
 * https://dribbble.com/shots/1421536-Cupido
 * http://www.justicedavidgutierrez.com/Treats
