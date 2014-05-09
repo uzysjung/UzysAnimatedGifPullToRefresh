@@ -313,13 +313,16 @@
 - (void)setFrameSizeByProgressImage
 {
     UIImage *image1 = self.pImgArrProgress.lastObject;
-    self.frame = CGRectMake((self.scrollView.bounds.size.width - image1.size.width)/2, -image1.size.height, image1.size.width, image1.size.height);
-    
+    if(image1)
+        self.frame = CGRectMake((self.scrollView.bounds.size.width - image1.size.width)/2, -image1.size.height, image1.size.width, image1.size.height);
 }
 - (void)setFrameSizeByLoadingImage
 {
     UIImage *image1 = self.pImgArrLoading.lastObject;
-    self.frame = CGRectMake((self.scrollView.bounds.size.width - image1.size.width)/2, -image1.size.height, image1.size.width, image1.size.height);
+    if(image1)
+    {
+        self.frame = CGRectMake((self.scrollView.bounds.size.width - image1.size.width)/2, -image1.size.height, image1.size.width, image1.size.height);
+    }
 }
 #pragma mark - public method
 - (void)stopIndicatorAnimation

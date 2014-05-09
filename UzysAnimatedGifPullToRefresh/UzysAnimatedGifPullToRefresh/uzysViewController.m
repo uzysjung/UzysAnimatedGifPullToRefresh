@@ -16,6 +16,7 @@
 @interface uzysViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *pData;
+@property (nonatomic,assign) BOOL isLoading;
 @end
 #define CELLIDENTIFIER @"CELL"
 @implementation uzysViewController
@@ -72,7 +73,7 @@
 
 - (void)insertRowAtTop {
     __weak typeof(self) weakSelf = self;
-    
+    self.isLoading =YES;
     int64_t delayInSeconds = 2.2;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
@@ -84,6 +85,8 @@
         
         //Stop PullToRefresh Activity Animation
         [weakSelf.tableView stopRefreshAnimation];
+        weakSelf.isLoading =NO;
+
     });
 }
 
@@ -140,9 +143,13 @@
     
     return cell;
 }
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if(self.isLoading)
+    {
+        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+        return;
+    }
     if([[self.pData objectAtIndex:indexPath.row] isKindOfClass:[NSString class]] && [[self.pData objectAtIndex:indexPath.row] isEqualToString:@"0"])
     {
         
@@ -160,7 +167,7 @@
         [self.tableView addPullToRefreshActionHandler:^{
             [weakSelf insertRowAtTop];
 
-        } ProgressImages:progress ProgressScrollThreshold:100];
+        } ProgressImages:progress ProgressScrollThreshold:60];
         
     }
     else if([[self.pData objectAtIndex:indexPath.row] isKindOfClass:[NSString class]] && [[self.pData objectAtIndex:indexPath.row] isEqualToString:@"1"])
@@ -188,13 +195,13 @@
     else if([[self.pData objectAtIndex:indexPath.row] isKindOfClass:[NSString class]] && [[self.pData objectAtIndex:indexPath.row] isEqualToString:@"3"])
     {
         self.tableView.showAlphaTransition = !self.tableView.showAlphaTransition;
-        [self.tableView reloadData];
+       
     }
     else if([[self.pData objectAtIndex:indexPath.row] isKindOfClass:[NSString class]] && [[self.pData objectAtIndex:indexPath.row] isEqualToString:@"4"])
     {
         self.tableView.showVariableSize = !self.tableView.showVariableSize;
-        [self.tableView reloadData];
     }
+    [self.tableView reloadData];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 @end
