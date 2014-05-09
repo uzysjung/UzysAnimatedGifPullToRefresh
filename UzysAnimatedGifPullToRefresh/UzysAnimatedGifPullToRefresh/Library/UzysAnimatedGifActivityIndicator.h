@@ -25,6 +25,7 @@ typedef NS_ENUM(NSUInteger, UZYSPullToRefreshState) {
 @property (nonatomic,weak) UIScrollView *scrollView;
 @property (nonatomic,copy) actionHandler pullToRefreshHandler;
 @property (nonatomic,assign) BOOL showAlphaTransition;
+@property (nonatomic,assign) BOOL isVariableSize;
 - (id)initWithProgressImages:(NSArray *)progressImg LoadingImages:(NSArray *)loadingImages ProgressScrollThreshold:(NSInteger)threshold LoadingImagesFrameRate:(NSInteger)lFrameRate;
 - (void)stopIndicatorAnimation;
 - (void)manuallyTriggered;

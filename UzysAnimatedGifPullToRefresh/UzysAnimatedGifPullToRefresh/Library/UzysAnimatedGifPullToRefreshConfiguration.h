@@ -7,4 +7,4 @@
 //
 
 #define initialPulltoRefreshThreshold 50.0
-#define StartPosition -10.0
+#define StartPosition 10.0

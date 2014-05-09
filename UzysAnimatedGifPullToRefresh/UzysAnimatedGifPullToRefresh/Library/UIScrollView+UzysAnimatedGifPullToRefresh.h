@@ -11,8 +11,8 @@
 @interface UIScrollView (UzysAnimatedGifPullToRefresh)
 @property (nonatomic,assign) BOOL showPullToRefresh;
 @property (nonatomic,assign) BOOL showAlphaTransition;
+@property (nonatomic,assign) BOOL showVariableSize;
 @property (nonatomic,strong) UzysAnimatedGifActivityIndicator *pullToRefreshView;
-
 //테스트
 //- (void)addPullToRefreshActionHandler:(actionHandler)handler;
 

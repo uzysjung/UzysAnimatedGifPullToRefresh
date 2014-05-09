@@ -49,7 +49,7 @@
     [self.tableView addPullToRefreshActionHandler:^{
         [weakSelf insertRowAtTop];
         
-    } ProgressImagesGifName:@"spinner_dropbox@2x.gif" LoadingImagesGifName:@"run@2x.gif" ProgressScrollThreshold:60 LoadingImageFrameRate:30];
+    } ProgressImagesGifName:@"spinner_dropbox@2x.gif" LoadingImagesGifName:@"run@2x.gif" ProgressScrollThreshold:50 LoadingImageFrameRate:30];
     
 }
 - (void)viewDidAppear:(BOOL)animated
@@ -64,6 +64,7 @@
     [self.pData addObject:@"1"];
     [self.pData addObject:@"2"];
     [self.pData addObject:@"3"];
+    [self.pData addObject:@"4"];
     
     for(int i=0; i<20; i++)
         [self.pData addObject:[NSDate dateWithTimeIntervalSinceNow:-(i*100)]];
@@ -118,6 +119,13 @@
         cell.textLabel.textColor = [UIColor blackColor];
 
         NSString *strLabel = [NSString stringWithFormat:@"Alpha Transition %@",self.tableView.showAlphaTransition ?@"ON":@"OFF"];
+        cell.textLabel.text = strLabel;
+    }
+    else if([[self.pData objectAtIndex:indexPath.row] isKindOfClass:[NSString class]] &&[[self.pData objectAtIndex:indexPath.row] isEqualToString:@"4"])
+    {
+        cell.textLabel.textColor = [UIColor blackColor];
+        
+        NSString *strLabel = [NSString stringWithFormat:@"Variable Size %@",self.tableView.showVariableSize ?@"ON":@"OFF"];
         cell.textLabel.text = strLabel;
     }
     else
@@ -181,7 +189,12 @@
     {
         self.tableView.showAlphaTransition = !self.tableView.showAlphaTransition;
         [self.tableView reloadData];
-    }    
+    }
+    else if([[self.pData objectAtIndex:indexPath.row] isKindOfClass:[NSString class]] && [[self.pData objectAtIndex:indexPath.row] isEqualToString:@"4"])
+    {
+        self.tableView.showVariableSize = !self.tableView.showVariableSize;
+        [self.tableView reloadData];
+    }
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 @end

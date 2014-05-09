@@ -135,4 +135,12 @@ static char UIScrollViewPullToRefreshView;
 {
     return self.pullToRefreshView.showAlphaTransition;
 }
+- (void)setShowVariableSize:(BOOL)showVariableSize
+{
+    self.pullToRefreshView.isVariableSize = showVariableSize;
+}
+-(BOOL)showVariableSize
+{
+    return self.pullToRefreshView.isVariableSize;
+}
 @end
