@@ -35,7 +35,7 @@
         threshold = initialPulltoRefreshThreshold;
     }
     UIImage *image1 = progressImg.firstObject;
-    NSLog(@"image1 size %@ scale %f",NSStringFromCGSize(image1.size),image1.scale);
+//    NSLog(@"image1 size %@ scale %f",NSStringFromCGSize(image1.size),image1.scale);
     self = [super initWithFrame:CGRectMake(0, -image1.size.height, image1.size.width, image1.size.height)];
     if(self) {
         self.pImgArrProgress = progressImg;
@@ -61,7 +61,7 @@
     self.imageViewProgress.backgroundColor = [UIColor clearColor];
 //    self.imageViewProgress.layer.borderWidth = 1;
     [self addSubview:self.imageViewProgress];
-    NSLog(@"frame %@ imgViewProgress frame %@ ",NSStringFromCGRect(self.frame),NSStringFromCGRect(self.imageViewProgress.frame));
+//    NSLog(@"frame %@ imgViewProgress frame %@ ",NSStringFromCGRect(self.frame),NSStringFromCGRect(self.imageViewProgress.frame));
     
     if(self.pImgArrLoading==nil)
     {
@@ -74,8 +74,8 @@
     else
     {
         NSAssert([self.pImgArrLoading.lastObject isKindOfClass:[UIImage class]], @"pImgArrLoading Array has object that is not image");
-        UIImage *imgf =[self.pImgArrLoading firstObject];
-        NSLog(@"image Size %@",NSStringFromCGSize(imgf.size));
+//        UIImage *imgf =[self.pImgArrLoading firstObject];
+//        NSLog(@"image Size %@",NSStringFromCGSize(imgf.size));
         self.imageViewLoading = [[UIImageView alloc] initWithImage:[self.pImgArrLoading firstObject]];
         self.imageViewLoading.contentMode = UIViewContentModeScaleAspectFit;
         self.imageViewLoading.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight ;
@@ -197,13 +197,13 @@
         }
         case UZYSGIFPullToRefreshStateTriggering: //progress
         {
-                        NSLog(@"trigering");
+//                        NSLog(@"trigering");
             if(self.progress >= 1.0)
                 self.state = UZYSGIFPullToRefreshStateTriggered;
         }
             break;
         case UZYSGIFPullToRefreshStateTriggered: //fire actionhandler
-                        NSLog(@"trigered");
+//                        NSLog(@"trigered");
             if(self.scrollView.tracking == NO && prevProgress > 0.98)
             {
                 [self actionTriggeredState];
