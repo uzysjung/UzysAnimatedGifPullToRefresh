@@ -31,4 +31,6 @@ typedef NS_ENUM(NSUInteger, UZYSPullToRefreshState) {
 - (void)manuallyTriggered;
 - (void)setSize:(CGSize) size;
 
+- (void)setFrameSizeByProgressImage;
+- (void)setFrameSizeByLoadingImage;
 @end

@@ -14,9 +14,10 @@
 #import "uzysViewController.h"
 #import "UIScrollView+UzysAnimatedGifPullToRefresh.h"
 @interface uzysViewController ()<UITableViewDataSource,UITableViewDelegate>
-@property (nonatomic,strong) UITableView *tableView;
+//@property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *pData;
 @property (nonatomic,assign) BOOL isLoading;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end
 #define CELLIDENTIFIER @"CELL"
 @implementation uzysViewController
@@ -28,13 +29,13 @@
     [self setupDataSource];
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"UzysCircularProgressPullToRefresh";
-    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+//    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CELLIDENTIFIER];
-    [self.view addSubview:self.tableView];
+//    [self.view addSubview:self.tableView];
 }
 - (void)didReceiveMemoryWarning
 {
@@ -190,7 +191,7 @@
         [self.tableView addPullToRefreshActionHandler:^{
             [weakSelf insertRowAtTop];
             
-        } ProgressImagesGifName:@"cupido@2x.gif" LoadingImagesGifName:@"jgr@2x.gif" ProgressScrollThreshold:90];
+        } ProgressImagesGifName:@"cupido@2x.gif" LoadingImagesGifName:@"jgr@2x.gif" ProgressScrollThreshold:70];
     }
     else if([[self.pData objectAtIndex:indexPath.row] isKindOfClass:[NSString class]] && [[self.pData objectAtIndex:indexPath.row] isEqualToString:@"3"])
     {
@@ -204,4 +205,10 @@
     [self.tableView reloadData];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskAll;
+}
+
 @end

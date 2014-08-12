@@ -107,6 +107,10 @@ static char UIScrollViewPullToRefreshView;
             [self addObserver:self.pullToRefreshView forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
             [self addObserver:self.pullToRefreshView forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
             [self addObserver:self.pullToRefreshView forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
+            [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:UIDeviceOrientationDidChangeNotification
+             object:[UIDevice currentDevice]];
+            
             self.pullToRefreshView.isObserving = YES;
         }
     }
@@ -117,6 +121,9 @@ static char UIScrollViewPullToRefreshView;
             [self removeObserver:self.pullToRefreshView forKeyPath:@"contentOffset"];
             [self removeObserver:self.pullToRefreshView forKeyPath:@"contentSize"];
             [self removeObserver:self.pullToRefreshView forKeyPath:@"frame"];
+            [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
+            [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceOrientationDidChangeNotification object:[UIDevice currentDevice]];
+            
             self.pullToRefreshView.isObserving = NO;
         }
     }
@@ -143,4 +150,20 @@ static char UIScrollViewPullToRefreshView;
 {
     return self.pullToRefreshView.isVariableSize;
 }
+
+- (void) orientationChanged:(NSNotification *)note
+{
+//    UIDevice * device = note.object;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if(self.pullToRefreshView.state == UZYSGIFPullToRefreshStateLoading && self.pullToRefreshView.isVariableSize)
+        {
+            [self.pullToRefreshView setFrameSizeByLoadingImage];
+        }
+        else
+        {
+            [self.pullToRefreshView setFrameSizeByProgressImage];
+        }
+    });
+}
+
 @end

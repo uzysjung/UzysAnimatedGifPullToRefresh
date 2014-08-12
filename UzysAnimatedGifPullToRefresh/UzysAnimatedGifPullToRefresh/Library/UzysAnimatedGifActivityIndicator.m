@@ -92,7 +92,6 @@
 
 - (void)layoutSubviews{
     [super layoutSubviews];
-    
 }
 
 
@@ -172,6 +171,8 @@
     }
     else if([keyPath isEqualToString:@"frame"])
     {
+        [self setFrameSizeByProgressImage];
+
         [self setNeedsLayout];
         [self setNeedsDisplay];
     }

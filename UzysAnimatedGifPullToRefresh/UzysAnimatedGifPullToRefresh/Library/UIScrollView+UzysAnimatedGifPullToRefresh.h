@@ -13,9 +13,6 @@
 @property (nonatomic,assign) BOOL showAlphaTransition;
 @property (nonatomic,assign) BOOL showVariableSize;
 @property (nonatomic,strong) UzysAnimatedGifActivityIndicator *pullToRefreshView;
-//테스트
-//- (void)addPullToRefreshActionHandler:(actionHandler)handler;
-
 
 - (void)addPullToRefreshActionHandler:(actionHandler)handler
                        ProgressImages:(NSArray *)progressImages
