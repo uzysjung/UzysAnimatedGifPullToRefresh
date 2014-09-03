@@ -19,6 +19,7 @@
 @property (nonatomic,assign) BOOL isLoading;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end
+#define IS_IOS7 (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1)
 #define CELLIDENTIFIER @"CELL"
 @implementation uzysViewController
 
@@ -33,8 +34,11 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.backgroundColor = [UIColor clearColor];
-    self.tableView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
-    self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(20, 0, 0, 0);
+    if(IS_IOS7)
+    {
+        self.tableView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
+        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(20, 0, 0, 0);        
+    }
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CELLIDENTIFIER];
 //    [self.view addSubview:self.tableView];
 }
