@@ -34,6 +34,7 @@
     self.tableView.dataSource = self;
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
+    self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(20, 0, 0, 0);
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CELLIDENTIFIER];
 //    [self.view addSubview:self.tableView];
 }

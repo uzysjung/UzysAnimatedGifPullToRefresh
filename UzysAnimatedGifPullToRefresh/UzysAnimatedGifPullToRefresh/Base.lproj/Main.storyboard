@@ -18,16 +18,15 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="1EG-at-SFn">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="588"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <inset key="scrollIndicatorInsets" minX="0.0" minY="20" maxX="0.0" maxY="0.0"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="1EG-at-SFn" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="ABz-tv-aFI"/>
-                            <constraint firstAttribute="bottom" secondItem="1EG-at-SFn" secondAttribute="bottom" constant="-20" id="Qt7-7y-hjI"/>
+                            <constraint firstAttribute="bottom" secondItem="1EG-at-SFn" secondAttribute="bottom" id="Qt7-7y-hjI"/>
                             <constraint firstAttribute="trailing" secondItem="1EG-at-SFn" secondAttribute="trailing" id="Ttv-hx-ask"/>
                             <constraint firstItem="1EG-at-SFn" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="jb7-id-K2l"/>
                         </constraints>
