@@ -158,9 +158,7 @@
     }
     if([[self.pData objectAtIndex:indexPath.row] isKindOfClass:[NSString class]] && [[self.pData objectAtIndex:indexPath.row] isEqualToString:@"0"])
     {
-        
-        self.tableView.showPullToRefresh = NO;
-        self.tableView.pullToRefreshView = nil;
+        [self.tableView removePullToRefreshActionHandler];
         
         __weak typeof(self) weakSelf =self;
         
@@ -178,8 +176,7 @@
     }
     else if([[self.pData objectAtIndex:indexPath.row] isKindOfClass:[NSString class]] && [[self.pData objectAtIndex:indexPath.row] isEqualToString:@"1"])
     {
-        self.tableView.showPullToRefresh = NO;
-        self.tableView.pullToRefreshView = nil;
+        [self.tableView removePullToRefreshActionHandler];
         
         __weak typeof(self) weakSelf =self;
         [self.tableView addPullToRefreshActionHandler:^{
@@ -189,8 +186,7 @@
     }
     else if([[self.pData objectAtIndex:indexPath.row] isKindOfClass:[NSString class]] && [[self.pData objectAtIndex:indexPath.row] isEqualToString:@"2"])
     {
-        self.tableView.showPullToRefresh = NO;
-        self.tableView.pullToRefreshView = nil;
+        [self.tableView removePullToRefreshActionHandler];
         
         __weak typeof(self) weakSelf =self;
         [self.tableView addPullToRefreshActionHandler:^{

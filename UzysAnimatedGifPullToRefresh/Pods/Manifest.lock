@@ -1,10 +1,10 @@
 PODS:
-  - AnimatedGIFImageSerialization (0.0.1)
+  - AnimatedGIFImageSerialization (0.2.0)
 
 DEPENDENCIES:
-  - AnimatedGIFImageSerialization (~> 0.0.1)
+  - AnimatedGIFImageSerialization (~> 0.2.0)
 
 SPEC CHECKSUMS:
-  AnimatedGIFImageSerialization: 334f7b882713b7336ba15106c92e4843e598358f
+  AnimatedGIFImageSerialization: ee2b8f04ec1143dd196cac160a7b119753891825
 
-COCOAPODS: 0.32.1
+COCOAPODS: 0.33.1

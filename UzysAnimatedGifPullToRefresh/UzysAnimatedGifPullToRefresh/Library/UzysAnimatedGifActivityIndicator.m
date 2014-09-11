@@ -241,6 +241,13 @@
     }
 }
 
+- (void)dealloc
+{
+    self.pImgArrLoading = nil;
+    self.pImgArrProgress = nil;
+    self.imageViewProgress = nil;
+    self.imageViewLoading = nil;
+}
 
 -(void)actionStopState
 {

@@ -49,8 +49,8 @@ static char UIScrollViewPullToRefreshView;
 
 - (void)addPullToRefreshActionHandler:(actionHandler)handler ProgressImagesGifName:(NSString *)progressGifName LoadingImagesGifName:(NSString *)loadingGifName ProgressScrollThreshold:(NSInteger)threshold
 {
-    UIImage *progressImage = [UIImage imageNamed:progressGifName];
-    UIImage *loadingImage = [UIImage imageNamed:loadingGifName];
+    UIImage *progressImage = [[UIImage alloc] initWithContentsOfFile:[[[NSBundle mainBundle] resourcePath]  stringByAppendingPathComponent:progressGifName]];
+    UIImage *loadingImage = [[UIImage alloc] initWithContentsOfFile:[[[NSBundle mainBundle] resourcePath]  stringByAppendingPathComponent:loadingGifName]];
     
     [self addPullToRefreshActionHandler:handler
                          ProgressImages:progressImage.images
@@ -60,8 +60,8 @@ static char UIScrollViewPullToRefreshView;
 }
 - (void)addPullToRefreshActionHandler:(actionHandler)handler ProgressImagesGifName:(NSString *)progressGifName LoadingImagesGifName:(NSString *)loadingGifName ProgressScrollThreshold:(NSInteger)threshold LoadingImageFrameRate:(NSInteger)frameRate
 {
-    UIImage *progressImage = [UIImage imageNamed:progressGifName];
-    UIImage *loadingImage = [UIImage imageNamed:loadingGifName];
+    UIImage *progressImage = [[UIImage alloc] initWithContentsOfFile:[[[NSBundle mainBundle] resourcePath]  stringByAppendingPathComponent:progressGifName]];
+    UIImage *loadingImage = [[UIImage alloc] initWithContentsOfFile:[[[NSBundle mainBundle] resourcePath]  stringByAppendingPathComponent:loadingGifName]];
     
     [self addPullToRefreshActionHandler:handler
                          ProgressImages:progressImage.images
@@ -77,6 +77,12 @@ static char UIScrollViewPullToRefreshView;
                 ProgressScrollThreshold:threshold];
 }
 
+- (void)removePullToRefreshActionHandler
+{
+    self.showPullToRefresh = NO;
+    [self.pullToRefreshView removeFromSuperview];
+    self.pullToRefreshView = nil;
+}
 - (void)triggerPullToRefresh
 {
     [self.pullToRefreshView manuallyTriggered];

@@ -16,6 +16,16 @@ imageView.image = [UIImage imageNamed:@"animated.gif"];
 
 ![Animated GIF](https://raw.githubusercontent.com/mattt/AnimatedGIFImageSerialization/master/Example/Animated%20GIF%20Example/animated.gif)
 
+### Encoding
+
+```objective-c
+UIImage *image = ...;
+NSData *data = [AnimatedGIFImageSerialization animatedGIFDataWithImage:image
+                                                              duration:1.0
+                                                             loopCount:1
+                                                                 error:nil];
+```
+
 ---
 
 ## Contact

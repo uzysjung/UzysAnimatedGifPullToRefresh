@@ -39,6 +39,8 @@
               ProgressScrollThreshold:(NSInteger)threshold
                 LoadingImageFrameRate:(NSInteger)frameRate;
 
+- (void)removePullToRefreshActionHandler;
+
 - (void)triggerPullToRefresh;
 - (void)stopRefreshAnimation;
 @end
