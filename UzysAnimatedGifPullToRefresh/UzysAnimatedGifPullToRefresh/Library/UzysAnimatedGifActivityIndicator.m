@@ -49,6 +49,7 @@
 
 - (void)_commonInit
 {
+    self.activityIndicatorStyle = UIActivityIndicatorViewStyleGray;
     self.contentMode = UIViewContentModeRedraw;
     self.state = UZYSGIFPullToRefreshStateNone;
     self.backgroundColor = [UIColor clearColor];
@@ -59,14 +60,11 @@
     self.imageViewProgress.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight ;
     self.imageViewProgress.frame = self.bounds;
     self.imageViewProgress.backgroundColor = [UIColor clearColor];
-//    self.imageViewProgress.layer.borderWidth = 1;
     [self addSubview:self.imageViewProgress];
-//    NSLog(@"frame %@ imgViewProgress frame %@ ",NSStringFromCGRect(self.frame),NSStringFromCGRect(self.imageViewProgress.frame));
     
     if(self.pImgArrLoading==nil)
     {
-        //init actitvity indicator
-        _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:self.activityIndicatorStyle];
         _activityIndicatorView.hidesWhenStopped = YES;
         _activityIndicatorView.frame = self.bounds;
         [self addSubview:_activityIndicatorView];        
@@ -74,8 +72,6 @@
     else
     {
         NSAssert([self.pImgArrLoading.lastObject isKindOfClass:[UIImage class]], @"pImgArrLoading Array has object that is not image");
-//        UIImage *imgf =[self.pImgArrLoading firstObject];
-//        NSLog(@"image Size %@",NSStringFromCGSize(imgf.size));
         self.imageViewLoading = [[UIImageView alloc] initWithImage:[self.pImgArrLoading firstObject]];
         self.imageViewLoading.contentMode = UIViewContentModeScaleAspectFit;
         self.imageViewLoading.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight ;
@@ -84,7 +80,6 @@
         self.imageViewLoading.animationDuration = (CGFloat)ceilf((1.0/(CGFloat)self.LoadingFrameRate) * (CGFloat)self.imageViewLoading.animationImages.count);
         self.imageViewLoading.alpha = 0;
         self.imageViewLoading.backgroundColor = [UIColor clearColor];
-//        self.imageViewLoading.layer.borderWidth = 1;
         [self addSubview:self.imageViewLoading];
     }
     self.alpha = 0;
@@ -156,7 +151,14 @@
     _progress = progress;
     prevProgress = progress;
 }
-
+- (void)dealloc
+{
+    self.imageViewLoading = nil;
+    self.imageViewProgress = nil;
+    self.pImgArrLoading = nil;
+    self.imageViewProgress = nil;
+    
+}
 #pragma mark - KVO
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
@@ -182,15 +184,12 @@
     static double prevProgress;
     CGFloat yOffset = contentOffset.y;
     self.progress = ((yOffset+ self.originalTopInset + StartPosition)/(-self.progressThreshold ));
-//    NSLog(@"progrss %f yOffset %f",self.progress,yOffset);
     self.center = CGPointMake(self.center.x, (contentOffset.y+ self.originalTopInset)/2);
     switch (_state) {
         case UZYSGIFPullToRefreshStateStopped: //finish
-            //            NSLog(@"Stoped");
             break;
         case UZYSGIFPullToRefreshStateNone: //detect action
         {
-            //            NSLog(@"None");
             if(self.scrollView.isDragging && yOffset <0 )
             {
                 self.state = UZYSGIFPullToRefreshStateTriggering;
@@ -198,13 +197,11 @@
         }
         case UZYSGIFPullToRefreshStateTriggering: //progress
         {
-//                        NSLog(@"trigering");
             if(self.progress >= 1.0)
                 self.state = UZYSGIFPullToRefreshStateTriggered;
         }
             break;
         case UZYSGIFPullToRefreshStateTriggered: //fire actionhandler
-//                        NSLog(@"trigered");
             if(self.scrollView.tracking == NO && prevProgress > 0.98)
             {
                 [self actionTriggeredState];
@@ -241,14 +238,6 @@
     }
 }
 
-- (void)dealloc
-{
-    self.pImgArrLoading = nil;
-    self.pImgArrProgress = nil;
-    self.imageViewProgress = nil;
-    self.imageViewLoading = nil;
-}
-
 -(void)actionStopState
 {
     self.state = UZYSGIFPullToRefreshStateCanFinish;
@@ -275,7 +264,6 @@
             [self.activityIndicatorView stopAnimating];
             self.activityIndicatorView.alpha = 0.0;
         }
-
 
         [self resetScrollViewContentInset:^{
             self.imageViewProgress.alpha = 1.0;
@@ -315,8 +303,10 @@
         [self.activityIndicatorView startAnimating];
     }
     [self setupScrollViewContentInsetForLoadingIndicator:nil];
+    
     if(self.pullToRefreshHandler)
         self.pullToRefreshHandler();
+    
 }
 - (void)setFrameSizeByProgressImage
 {
@@ -332,6 +322,7 @@
         self.frame = CGRectMake((self.scrollView.bounds.size.width - image1.size.width)/2, -image1.size.height, image1.size.width, image1.size.height);
     }
 }
+
 #pragma mark - public method
 - (void)stopIndicatorAnimation
 {
@@ -364,4 +355,17 @@
         [self setFrameSizeByProgressImage];
     }
 }
+-(void)setActivityIndicatorViewStyle:(UIActivityIndicatorViewStyle)style
+{
+    if(self.activityIndicatorView)
+    {
+        _activityIndicatorStyle = style;
+        [self.activityIndicatorView removeFromSuperview];
+        self.activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:style];
+        self.activityIndicatorView.hidesWhenStopped = YES;
+        [self insertSubview:self.activityIndicatorView belowSubview:self.imageViewProgress];
+        self.activityIndicatorView.frame = self.bounds;        
+    }
+}
+
 @end

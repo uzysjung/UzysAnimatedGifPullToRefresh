@@ -9,6 +9,11 @@
 #import "UIScrollView+UzysAnimatedGifPullToRefresh.h"
 #import <objc/runtime.h>
 #import <AnimatedGIFImageSerialization.h>
+#define IS_IOS7 (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1)
+#define cDefaultFloatComparisonEpsilon    0.001
+#define cEqualFloats(f1, f2, epsilon)    ( fabs( (f1) - (f2) ) < epsilon )
+#define cNotEqualFloats(f1, f2, epsilon)    ( !cEqualFloats(f1, f2, epsilon) )
+
 static char UIScrollViewPullToRefreshView;
 
 @implementation UIScrollView (UzysAnimatedGifPullToRefresh)
@@ -28,6 +33,16 @@ static char UIScrollViewPullToRefreshView;
         view.frame = CGRectMake((self.bounds.size.width - view.bounds.size.width)/2,
                                 -view.bounds.size.height, view.bounds.size.width, view.bounds.size.height);
         view.originalTopInset = self.contentInset.top;
+        
+        if(IS_IOS7)
+        {
+            if(cEqualFloats(self.contentInset.top, 64.00, cDefaultFloatComparisonEpsilon) && cEqualFloats(self.frame.origin.y, 0.0, cDefaultFloatComparisonEpsilon))
+            {
+                view.portraitTopInset = 64.0;
+                view.landscapeTopInset = 52.0;
+            }
+        }
+
         [self addSubview:view];
         [self sendSubviewToBack:view];
         self.pullToRefreshView = view;
@@ -71,10 +86,17 @@ static char UIScrollViewPullToRefreshView;
 }
 - (void)addPullToRefreshActionHandler:(actionHandler)handler ProgressImagesGifName:(NSString *)progressGifName ProgressScrollThreshold:(NSInteger)threshold
 {
-    UIImage *progressImage = [UIImage imageNamed:progressGifName];
+    UIImage *progressImage = [[UIImage alloc] initWithContentsOfFile:[[[NSBundle mainBundle] resourcePath]  stringByAppendingPathComponent:progressGifName]]; //[UIImage imageNamed:progressGifName];
+
     [self addPullToRefreshActionHandler:handler
                          ProgressImages:progressImage.images
                 ProgressScrollThreshold:threshold];
+}
+
+- (void)addTopInsetInPortrait:(CGFloat)pInset TopInsetInLandscape:(CGFloat)lInset
+{
+    self.pullToRefreshView.portraitTopInset = pInset;
+    self.pullToRefreshView.landscapeTopInset = lInset;
 }
 
 - (void)removePullToRefreshActionHandler
@@ -156,11 +178,28 @@ static char UIScrollViewPullToRefreshView;
 {
     return self.pullToRefreshView.isVariableSize;
 }
-
+- (void)setActivityIndcatorStyle:(UIActivityIndicatorViewStyle)activityIndcatorStyle
+{
+    [self.pullToRefreshView setActivityIndicatorViewStyle:activityIndcatorStyle];
+}
+- (UIActivityIndicatorViewStyle)activityIndcatorStyle
+{
+    return self.pullToRefreshView.activityIndicatorStyle;
+}
 - (void) orientationChanged:(NSNotification *)note
 {
-//    UIDevice * device = note.object;
+    UIDevice * device = note.object;
     dispatch_async(dispatch_get_main_queue(), ^{
+        if(UIDeviceOrientationIsLandscape(device.orientation))
+        {
+            if(cNotEqualFloats( self.pullToRefreshView.landscapeTopInset , 0.0 , cDefaultFloatComparisonEpsilon))
+                self.pullToRefreshView.originalTopInset = self.pullToRefreshView.landscapeTopInset;
+        }
+        else
+        {
+            if(cNotEqualFloats( self.pullToRefreshView.portraitTopInset , 0.0 , cDefaultFloatComparisonEpsilon))
+                self.pullToRefreshView.originalTopInset = self.pullToRefreshView.portraitTopInset;
+        }
         if(self.pullToRefreshView.state == UZYSGIFPullToRefreshStateLoading && self.pullToRefreshView.isVariableSize)
         {
             [self.pullToRefreshView setFrameSizeByLoadingImage];
@@ -171,5 +210,6 @@ static char UIScrollViewPullToRefreshView;
         }
     });
 }
+
 
 @end

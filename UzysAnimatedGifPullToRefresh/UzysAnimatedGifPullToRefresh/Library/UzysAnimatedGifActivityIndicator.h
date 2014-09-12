@@ -21,15 +21,21 @@ typedef NS_ENUM(NSUInteger, UZYSPullToRefreshState) {
 @interface UzysAnimatedGifActivityIndicator : UIView
 @property (nonatomic,assign) BOOL isObserving;
 @property (nonatomic,assign) CGFloat originalTopInset;
+@property (nonatomic,assign) CGFloat landscapeTopInset;
+@property (nonatomic,assign) CGFloat portraitTopInset;
+
 @property (nonatomic,assign) UZYSPullToRefreshState state;
 @property (nonatomic,weak) UIScrollView *scrollView;
 @property (nonatomic,copy) actionHandler pullToRefreshHandler;
 @property (nonatomic,assign) BOOL showAlphaTransition;
 @property (nonatomic,assign) BOOL isVariableSize;
+@property (nonatomic,assign) UIActivityIndicatorViewStyle activityIndicatorStyle;
+
 - (id)initWithProgressImages:(NSArray *)progressImg LoadingImages:(NSArray *)loadingImages ProgressScrollThreshold:(NSInteger)threshold LoadingImagesFrameRate:(NSInteger)lFrameRate;
 - (void)stopIndicatorAnimation;
 - (void)manuallyTriggered;
 - (void)setSize:(CGSize) size;
+- (void)setActivityIndicatorViewStyle:(UIActivityIndicatorViewStyle) style;
 
 - (void)setFrameSizeByProgressImage;
 - (void)setFrameSizeByLoadingImage;

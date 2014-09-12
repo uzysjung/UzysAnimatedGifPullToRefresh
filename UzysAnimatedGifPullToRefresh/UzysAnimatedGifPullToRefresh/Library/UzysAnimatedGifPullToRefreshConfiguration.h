@@ -6,5 +6,7 @@
 //  Copyright (c) 2014년 Uzys. All rights reserved.
 //
 
-#define initialPulltoRefreshThreshold 40.0
+#define initialPulltoRefreshThreshold 50.0
 #define StartPosition 10.0
+#define ProgressImageMargin 2.0
+#define LoadingImageMargin 2.0

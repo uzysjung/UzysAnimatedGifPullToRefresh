@@ -17,6 +17,7 @@
 //@property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *pData;
 @property (nonatomic,assign) BOOL isLoading;
+@property (nonatomic,assign) BOOL useActivityIndicator;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end
 #define IS_IOS7 (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1)
@@ -28,19 +29,14 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     [self setupDataSource];
+    if(IS_IOS7)
+        self.automaticallyAdjustsScrollViewInsets = YES;
     self.view.backgroundColor = [UIColor whiteColor];
-    self.title = @"UzysCircularProgressPullToRefresh";
-//    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    self.title = @"UzysAnimatedGifPullToRefresh";
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.backgroundColor = [UIColor clearColor];
-    if(IS_IOS7)
-    {
-        self.tableView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
-        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(20, 0, 0, 0);        
-    }
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CELLIDENTIFIER];
-//    [self.view addSubview:self.tableView];
 }
 - (void)didReceiveMemoryWarning
 {
@@ -56,8 +52,9 @@
     [self.tableView addPullToRefreshActionHandler:^{
         [weakSelf insertRowAtTop];
         
-    } ProgressImagesGifName:@"spinner_dropbox@2x.gif" LoadingImagesGifName:@"run@2x.gif" ProgressScrollThreshold:50 LoadingImageFrameRate:30];
-    
+    } ProgressImagesGifName:@"spinner_dropbox@2x.gif" LoadingImagesGifName:@"run@2x.gif" ProgressScrollThreshold:70 LoadingImageFrameRate:30];
+    if(IS_IOS7)
+        [self.tableView addTopInsetInPortrait:64 TopInsetInLandscape:52];
 }
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -72,6 +69,7 @@
     [self.pData addObject:@"2"];
     [self.pData addObject:@"3"];
     [self.pData addObject:@"4"];
+    [self.pData addObject:@"5"];
     
     for(int i=0; i<20; i++)
         [self.pData addObject:[NSDate dateWithTimeIntervalSinceNow:-(i*100)]];
@@ -121,7 +119,7 @@
     else if([[self.pData objectAtIndex:indexPath.row] isKindOfClass:[NSString class]] &&[[self.pData objectAtIndex:indexPath.row] isEqualToString:@"2"])
     {
         cell.textLabel.textColor = [UIColor blackColor];
-        cell.textLabel.text = @"cupido";
+        cell.textLabel.text = @"Cupido";
     }
     else if([[self.pData objectAtIndex:indexPath.row] isKindOfClass:[NSString class]] &&[[self.pData objectAtIndex:indexPath.row] isEqualToString:@"3"])
     {
@@ -135,6 +133,21 @@
         cell.textLabel.textColor = [UIColor blackColor];
         
         NSString *strLabel = [NSString stringWithFormat:@"Variable Size %@",self.tableView.showVariableSize ?@"ON":@"OFF"];
+        cell.textLabel.text = strLabel;
+    }
+    else if([[self.pData objectAtIndex:indexPath.row] isKindOfClass:[NSString class]] &&[[self.pData objectAtIndex:indexPath.row] isEqualToString:@"5"])
+    {
+        cell.textLabel.textColor = [UIColor blackColor];
+        NSString *strLabel;
+        if(self.useActivityIndicator)
+        {
+            NSArray *IndicatorStyle = @[@"WhiteLarge",@"White",@"Gray"];
+            strLabel = [NSString stringWithFormat:@"Indcator Style %@",IndicatorStyle[self.tableView.activityIndcatorStyle]];
+        }
+        else
+        {
+            strLabel = @"UIActivityIndicator non-exist. (Tap \'Progress Image by Array\')";
+        }
         cell.textLabel.text = strLabel;
     }
     else
@@ -172,7 +185,7 @@
             [weakSelf insertRowAtTop];
 
         } ProgressImages:progress ProgressScrollThreshold:60];
-        
+        self.useActivityIndicator = YES;
     }
     else if([[self.pData objectAtIndex:indexPath.row] isKindOfClass:[NSString class]] && [[self.pData objectAtIndex:indexPath.row] isEqualToString:@"1"])
     {
@@ -183,6 +196,8 @@
             [weakSelf insertRowAtTop];
 
         } ProgressImagesGifName:@"spinner_dropbox@2x.gif" LoadingImagesGifName:@"run@2x.gif" ProgressScrollThreshold:60 LoadingImageFrameRate:30];
+        self.useActivityIndicator = NO;
+
     }
     else if([[self.pData objectAtIndex:indexPath.row] isKindOfClass:[NSString class]] && [[self.pData objectAtIndex:indexPath.row] isEqualToString:@"2"])
     {
@@ -193,6 +208,7 @@
             [weakSelf insertRowAtTop];
             
         } ProgressImagesGifName:@"cupido@2x.gif" LoadingImagesGifName:@"jgr@2x.gif" ProgressScrollThreshold:70];
+        self.useActivityIndicator = NO;
     }
     else if([[self.pData objectAtIndex:indexPath.row] isKindOfClass:[NSString class]] && [[self.pData objectAtIndex:indexPath.row] isEqualToString:@"3"])
     {
@@ -203,6 +219,15 @@
     {
         self.tableView.showVariableSize = !self.tableView.showVariableSize;
     }
+    else if([[self.pData objectAtIndex:indexPath.row] isKindOfClass:[NSString class]] && [[self.pData objectAtIndex:indexPath.row] isEqualToString:@"5"])
+    {
+        static NSInteger styleCnt =0;
+        styleCnt++;
+        if(styleCnt >2)
+            styleCnt = 0;
+        self.tableView.activityIndcatorStyle = styleCnt;
+    }
+
     [self.tableView reloadData];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

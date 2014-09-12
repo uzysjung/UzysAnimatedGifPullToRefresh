@@ -12,6 +12,7 @@
 @property (nonatomic,assign) BOOL showPullToRefresh;
 @property (nonatomic,assign) BOOL showAlphaTransition;
 @property (nonatomic,assign) BOOL showVariableSize;
+@property (nonatomic,assign) UIActivityIndicatorViewStyle activityIndcatorStyle;
 @property (nonatomic,strong) UzysAnimatedGifActivityIndicator *pullToRefreshView;
 
 - (void)addPullToRefreshActionHandler:(actionHandler)handler
@@ -26,11 +27,11 @@
 
 - (void)addPullToRefreshActionHandler:(actionHandler)handler
                 ProgressImagesGifName:(NSString *)progressGifName
-                 LoadingImagesGifName:(NSString *)loadingGifName
               ProgressScrollThreshold:(NSInteger)threshold;
 
 - (void)addPullToRefreshActionHandler:(actionHandler)handler
                 ProgressImagesGifName:(NSString *)progressGifName
+                 LoadingImagesGifName:(NSString *)loadingGifName
               ProgressScrollThreshold:(NSInteger)threshold;
 
 - (void)addPullToRefreshActionHandler:(actionHandler)handler
@@ -43,4 +44,8 @@
 
 - (void)triggerPullToRefresh;
 - (void)stopRefreshAnimation;
+
+//For Orientation Changed
+- (void)addTopInsetInPortrait:(CGFloat)pInset TopInsetInLandscape:(CGFloat)lInset; // Should have called after addPullToRefreshActionHandler
+
 @end
