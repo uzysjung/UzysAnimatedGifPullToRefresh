@@ -83,6 +83,12 @@ adding PullToRefreshActionHandler
                     ProgressScrollThreshold:(NSInteger)threshold
                LoadingImagesFrameRate:(NSInteger)lframe;
 ```
+#### Setup TopInsets for both landscape and portrait.
+``` objective-c
+[self.tableView addTopInsetInPortrait:64 TopInsetInLandscape:52];
+// iOS 7 LandScape Navigationbar size 52 , Portrait Navigationbar size 64  
+
+```
 
 ## Contact
  - [Uzys.net](http://uzys.net)
