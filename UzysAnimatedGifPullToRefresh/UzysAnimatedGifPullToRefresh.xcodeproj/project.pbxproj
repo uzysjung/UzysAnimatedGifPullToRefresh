@@ -810,6 +810,7 @@
 			baseConfigurationReference = 6C635A4B5DCF42FA974449E7 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UzysAnimatedGifPullToRefresh/UzysAnimatedGifPullToRefresh-Prefix.pch";
 				INFOPLIST_FILE = "UzysAnimatedGifPullToRefresh/UzysAnimatedGifPullToRefresh-Info.plist";
@@ -824,6 +825,7 @@
 			baseConfigurationReference = 6C635A4B5DCF42FA974449E7 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UzysAnimatedGifPullToRefresh/UzysAnimatedGifPullToRefresh-Prefix.pch";
 				INFOPLIST_FILE = "UzysAnimatedGifPullToRefresh/UzysAnimatedGifPullToRefresh-Info.plist";
