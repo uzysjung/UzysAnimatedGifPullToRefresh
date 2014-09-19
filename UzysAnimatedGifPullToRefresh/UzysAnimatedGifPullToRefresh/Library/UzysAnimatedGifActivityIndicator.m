@@ -35,7 +35,6 @@
         threshold = initialPulltoRefreshThreshold;
     }
     UIImage *image1 = progressImg.firstObject;
-//    NSLog(@"image1 size %@ scale %f",NSStringFromCGSize(image1.size),image1.scale);
     self = [super initWithFrame:CGRectMake(0, -image1.size.height, image1.size.width, image1.size.height)];
     if(self) {
         self.pImgArrProgress = progressImg;
@@ -192,6 +191,7 @@
         {
             if(self.scrollView.isDragging && yOffset <0 )
             {
+                [self setFrameSizeByProgressImage];
                 self.state = UZYSGIFPullToRefreshStateTriggering;
             }
         }

@@ -20,7 +20,10 @@
 @property (nonatomic,assign) BOOL useActivityIndicator;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end
-#define IS_IOS7 (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1)
+#define IS_IOS7 (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1 && floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1)
+#define IS_IOS8  ([[[UIDevice currentDevice] systemVersion] compare:@"8" options:NSNumericSearch] != NSOrderedAscending)
+#define IS_IPHONE6PLUS ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) && [[UIScreen mainScreen] nativeScale] == 3.0f)
+
 #define CELLIDENTIFIER @"CELL"
 @implementation uzysViewController
 
@@ -29,7 +32,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     [self setupDataSource];
-    if(IS_IOS7)
+    if(IS_IOS7 || IS_IOS8)
         self.automaticallyAdjustsScrollViewInsets = YES;
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"UzysAnimatedGifPullToRefresh";
@@ -47,18 +50,29 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-
+ 
     __weak typeof(self) weakSelf =self;
     [self.tableView addPullToRefreshActionHandler:^{
         [weakSelf insertRowAtTop];
         
     } ProgressImagesGifName:@"spinner_dropbox@2x.gif" LoadingImagesGifName:@"run@2x.gif" ProgressScrollThreshold:70 LoadingImageFrameRate:30];
+
+    // If you did not change scrollview inset, you don't need code below.
     if(IS_IOS7)
         [self.tableView addTopInsetInPortrait:64 TopInsetInLandscape:52];
+    else if(IS_IOS8)
+    {
+        CGFloat landscapeTopInset = 32.0;
+        if(IS_IPHONE6PLUS)
+            landscapeTopInset = 44.0;
+        [self.tableView addTopInsetInPortrait:64 TopInsetInLandscape:landscapeTopInset];
+    }
 }
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+//    Manually trigger
+//    [self.tableView triggerPullToRefresh];
 }
 
 #pragma mark UITableView DataManagement
@@ -90,7 +104,6 @@
         //Stop PullToRefresh Activity Animation
         [weakSelf.tableView stopRefreshAnimation];
         weakSelf.isLoading =NO;
-
     });
 }
 
