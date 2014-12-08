@@ -30,7 +30,7 @@ Add PullToRefresh using animated GIF to any scrollView with just simple code
 adding PullToRefreshActionHandler
 
 ``` objective-c
--(void)viewWillAppear:(BOOL)animated
+- (void)viewDidLoad
 {
     __weak typeof(self) weakSelf =self;
     [self.tableView addPullToRefreshActionHandler:^{
