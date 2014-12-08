@@ -40,6 +40,25 @@
     self.tableView.dataSource = self;
     self.tableView.backgroundColor = [UIColor clearColor];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CELLIDENTIFIER];
+    
+    __weak typeof(self) weakSelf =self;
+    [self.tableView addPullToRefreshActionHandler:^{
+        [weakSelf insertRowAtTop];
+        
+    } ProgressImagesGifName:@"spinner_dropbox@2x.gif" LoadingImagesGifName:@"run@2x.gif" ProgressScrollThreshold:70 LoadingImageFrameRate:30];
+    
+    // If you did not change scrollview inset, you don't need code below.
+    if(IS_IOS7)
+        [self.tableView addTopInsetInPortrait:64 TopInsetInLandscape:52];
+    else if(IS_IOS8)
+    {
+        CGFloat landscapeTopInset = 32.0;
+        if(IS_IPHONE6PLUS)
+            landscapeTopInset = 44.0;
+        [self.tableView addTopInsetInPortrait:64 TopInsetInLandscape:landscapeTopInset];
+    }
+
+    
 }
 - (void)didReceiveMemoryWarning
 {
@@ -51,22 +70,6 @@
 {
     [super viewWillAppear:animated];
  
-    __weak typeof(self) weakSelf =self;
-    [self.tableView addPullToRefreshActionHandler:^{
-        [weakSelf insertRowAtTop];
-        
-    } ProgressImagesGifName:@"spinner_dropbox@2x.gif" LoadingImagesGifName:@"run@2x.gif" ProgressScrollThreshold:70 LoadingImageFrameRate:30];
-
-    // If you did not change scrollview inset, you don't need code below.
-    if(IS_IOS7)
-        [self.tableView addTopInsetInPortrait:64 TopInsetInLandscape:52];
-    else if(IS_IOS8)
-    {
-        CGFloat landscapeTopInset = 32.0;
-        if(IS_IPHONE6PLUS)
-            landscapeTopInset = 44.0;
-        [self.tableView addTopInsetInPortrait:64 TopInsetInLandscape:landscapeTopInset];
-    }
 }
 - (void)viewDidAppear:(BOOL)animated
 {
