@@ -58,7 +58,6 @@ static char UIScrollViewPullToRefreshView;
 
             }
         }
-
         [self addSubview:view];
         [self sendSubviewToBack:view];
         self.pullToRefreshView = view;

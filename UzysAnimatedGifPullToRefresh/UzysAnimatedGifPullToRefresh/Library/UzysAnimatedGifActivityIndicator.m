@@ -82,6 +82,7 @@
         [self addSubview:self.imageViewLoading];
     }
     self.alpha = 0;
+    [self actionStopState];
 }
 
 - (void)layoutSubviews{

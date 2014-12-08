@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "UzysAnimatedGifPullToRefresh"
-  s.version      = "0.9.3"
+  s.version      = "0.9.4"
   s.summary      = "Add PullToRefresh using animated GIF to any scrollView with just simple code"
   s.author       = { "Uzysjung" => "uzysjung@gmail.com" }
 
@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.license     = { :type => "MIT", :file => "LICENSE" }
   
   s.platform     = :ios
-  s.source       = { :git => "https://github.com/uzysjung/UzysAnimatedGifPullToRefresh.git", :tag => "0.9.3" }
+  s.source       = { :git => "https://github.com/uzysjung/UzysAnimatedGifPullToRefresh.git", :tag => "0.9.4" }
   s.requires_arc = true
   s.source_files = 'UzysAnimatedGifPullToRefresh/UzysAnimatedGifPullToRefresh/Library'
   s.public_header_files = 'UzysAnimatedGifPullToRefresh/UzysAnimatedGifPullToRefresh/Library/*.h'
