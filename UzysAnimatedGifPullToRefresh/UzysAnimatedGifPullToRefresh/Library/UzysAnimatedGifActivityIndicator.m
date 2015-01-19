@@ -50,13 +50,16 @@
 {
     self.activityIndicatorStyle = UIActivityIndicatorViewStyleGray;
     self.contentMode = UIViewContentModeRedraw;
+//    self.autoresizesSubviews = YES;
+//    self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+
     self.state = UZYSGIFPullToRefreshStateNone;
     self.backgroundColor = [UIColor clearColor];
     
     NSAssert([self.pImgArrProgress.lastObject isKindOfClass:[UIImage class]], @"pImgArrProgress Array has object that is not image");
     self.imageViewProgress = [[UIImageView alloc] initWithImage:[self.pImgArrProgress lastObject]];
     self.imageViewProgress.contentMode = UIViewContentModeScaleAspectFit;
-    self.imageViewProgress.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight ;
+    self.imageViewProgress.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin;
     self.imageViewProgress.frame = self.bounds;
     self.imageViewProgress.backgroundColor = [UIColor clearColor];
     [self addSubview:self.imageViewProgress];
@@ -73,15 +76,15 @@
         NSAssert([self.pImgArrLoading.lastObject isKindOfClass:[UIImage class]], @"pImgArrLoading Array has object that is not image");
         self.imageViewLoading = [[UIImageView alloc] initWithImage:[self.pImgArrLoading firstObject]];
         self.imageViewLoading.contentMode = UIViewContentModeScaleAspectFit;
-        self.imageViewLoading.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight ;
+        self.imageViewLoading.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin;
         self.imageViewLoading.frame = self.bounds;
         self.imageViewLoading.animationImages = self.pImgArrLoading;
         self.imageViewLoading.animationDuration = (CGFloat)ceilf((1.0/(CGFloat)self.LoadingFrameRate) * (CGFloat)self.imageViewLoading.animationImages.count);
-        self.imageViewLoading.alpha = 0;
+        self.imageViewLoading.alpha = 0.0f;
         self.imageViewLoading.backgroundColor = [UIColor clearColor];
         [self addSubview:self.imageViewLoading];
     }
-    self.alpha = 0;
+    self.alpha = 0.0f;
     [self actionStopState];
 }
 
@@ -91,31 +94,52 @@
 
 
 #pragma mark - ScrollViewInset
-- (void)setupScrollViewContentInsetForLoadingIndicator:(actionHandler)handler
+- (void)setupScrollViewContentInsetForLoadingIndicator:(actionHandler)handler animation:(BOOL)animation
 {
-    CGFloat offset = MAX(self.scrollView.contentOffset.y * -1, 0);
+//    CGFloat offset = MAX(self.scrollView.contentOffset.y * -1, 0);
     UIEdgeInsets currentInsets = self.scrollView.contentInset;
-    currentInsets.top = MIN(offset, self.originalTopInset + self.bounds.size.height + 20.0);
-    [self setScrollViewContentInset:currentInsets handler:handler];
+    float idealOffset = self.originalTopInset + self.bounds.size.height + 20.0;
+
+
+    currentInsets.top = idealOffset;
+//    currentInsets.top = MIN(offset, self.originalTopInset + self.bounds.size.height + 20.0);
+
+    [self setScrollViewContentInset:currentInsets handler:handler animation:animation];
 }
-- (void)resetScrollViewContentInset:(actionHandler)handler
+- (void)resetScrollViewContentInset:(actionHandler)handler animation:(BOOL)animation
 {
     UIEdgeInsets currentInsets = self.scrollView.contentInset;
     currentInsets.top = self.originalTopInset;
-    [self setScrollViewContentInset:currentInsets handler:handler];
+    [self setScrollViewContentInset:currentInsets handler:handler animation:animation];
 }
-- (void)setScrollViewContentInset:(UIEdgeInsets)contentInset handler:(actionHandler)handler
+- (void)setScrollViewContentInset:(UIEdgeInsets)contentInset handler:(actionHandler)handler animation:(BOOL)animation
 {
-    [UIView animateWithDuration:0.3
-                          delay:0
-                        options:UIViewAnimationOptionAllowUserInteraction|UIViewAnimationOptionCurveEaseOut|UIViewAnimationOptionBeginFromCurrentState
-                     animations:^{
-                         self.scrollView.contentInset = contentInset;
-                     }
-                     completion:^(BOOL finished) {
-                         if(handler)
-                             handler();
-                     }];
+    if(animation)
+    {
+        NSLog(@"self.frame1 %@",NSStringFromCGRect(self.frame));
+
+        [UIView animateWithDuration:0.3
+                              delay:0
+                            options:UIViewAnimationOptionAllowUserInteraction|UIViewAnimationOptionCurveEaseOut|UIViewAnimationOptionBeginFromCurrentState
+                         animations:^{
+                             self.scrollView.contentInset = contentInset;
+                             self.scrollView.contentOffset = CGPointMake(self.scrollView.contentOffset.x, -1*contentInset.top);
+                         }
+                         completion:^(BOOL finished) {
+                             NSLog(@"self.frame2 %@",NSStringFromCGRect(self.frame));
+
+                             if(handler)
+                                 handler();
+                         }];
+    }
+    else
+    {
+        self.scrollView.contentInset = contentInset;
+        self.scrollView.contentOffset = CGPointMake(self.scrollView.contentOffset.x, -1*contentInset.top);
+
+        if(handler)
+            handler();
+    }
 }
 #pragma mark - property
 - (void)setProgress:(double)progress
@@ -127,16 +151,20 @@
     }
     if(self.showAlphaTransition)
     {
-        self.alpha = 1.0 * progress;
+        if(self.state < UZYSGIFPullToRefreshStateTriggered)
+            self.alpha = 1.0 * progress;
+        else
+            self.alpha = 1.0;
     }
     else
     {
         CGFloat alphaValue = 1.0 * progress *5;
         if(alphaValue > 1.0)
             alphaValue = 1.0f;
-        self.alpha = alphaValue;   
+        self.alpha = alphaValue;
+
     }
-    if (progress >= 0 && progress <=1.0) {
+    if (progress >= 0.0f && progress <=1.0f) {
         //Animation
         NSInteger index = (NSInteger)roundf((self.pImgArrProgress.count ) * progress);
         if(index ==0)
@@ -185,34 +213,35 @@
     CGFloat yOffset = contentOffset.y;
     self.progress = ((yOffset+ self.originalTopInset + StartPosition)/(-self.progressThreshold ));
     self.center = CGPointMake(self.center.x, (contentOffset.y+ self.originalTopInset)/2);
+
     switch (_state) {
-        case UZYSGIFPullToRefreshStateStopped: //finish
+        case UZYSGIFPullToRefreshStateStopped: //finish (1)
             break;
-        case UZYSGIFPullToRefreshStateNone: //detect action
+        case UZYSGIFPullToRefreshStateNone: //detect action (0)
         {
-            if(self.scrollView.isDragging && yOffset <0 )
+            if(self.scrollView.isDragging && yOffset < 0.0f )
             {
+                self.imageViewProgress.alpha = 1.0f;
                 [self setFrameSizeByProgressImage];
                 self.state = UZYSGIFPullToRefreshStateTriggering;
             }
         }
-        case UZYSGIFPullToRefreshStateTriggering: //progress
+        case UZYSGIFPullToRefreshStateTriggering: //progress (2)
         {
-            if(self.progress >= 1.0)
+            if(self.progress >= 1.0f)
                 self.state = UZYSGIFPullToRefreshStateTriggered;
         }
             break;
-        case UZYSGIFPullToRefreshStateTriggered: //fire actionhandler
-            if(self.scrollView.tracking == NO && prevProgress > 0.98)
+        case UZYSGIFPullToRefreshStateTriggered: //fire actionhandler (3)
+            if(self.scrollView.isDragging == NO && prevProgress > 0.98f)
             {
                 [self actionTriggeredState];
             }
             break;
-        case UZYSGIFPullToRefreshStateLoading: //wait until stopIndicatorAnimation
-            
+        case UZYSGIFPullToRefreshStateLoading: //wait until stopIndicatorAnimation (4)
             break;
-        case UZYSGIFPullToRefreshStateCanFinish:
-            if(self.progress < 0.01 + ((CGFloat)StartPosition/-self.progressThreshold) && self.progress > -0.01 +((CGFloat)StartPosition/-self.progressThreshold))
+        case UZYSGIFPullToRefreshStateCanFinish: //(5)
+            if(self.progress < 0.01f + ((CGFloat)StartPosition/-self.progressThreshold) && self.progress > -0.01f +((CGFloat)StartPosition/-self.progressThreshold))
             {
                 self.state = UZYSGIFPullToRefreshStateNone;
             }
@@ -242,7 +271,7 @@
 -(void)actionStopState
 {
     self.state = UZYSGIFPullToRefreshStateCanFinish;
-    [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut|UIViewAnimationOptionAllowUserInteraction animations:^{
+    [UIView animateWithDuration:0.2f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut|UIViewAnimationOptionAllowUserInteraction animations:^{
         if(self.pImgArrLoading.count>0)
         {
             
@@ -252,49 +281,50 @@
             self.activityIndicatorView.transform = CGAffineTransformMakeScale(0.1, 0.1);
         }
     } completion:^(BOOL finished) {
-
-        if(self.pImgArrLoading.count>0)
-        {
-            [self.imageViewLoading stopAnimating];
-            self.imageViewLoading.alpha = 0.0;
-
-        }
-        else
-        {
-            self.activityIndicatorView.transform = CGAffineTransformIdentity;
-            [self.activityIndicatorView stopAnimating];
-            self.activityIndicatorView.alpha = 0.0;
-        }
-
-        [self resetScrollViewContentInset:^{
-            self.imageViewProgress.alpha = 1.0;
-            if(self.isVariableSize)
-                [self setFrameSizeByProgressImage];
-        }];
         
     }];
+
+    [self resetScrollViewContentInset:^{
+    } animation:YES];
+    
+    if(self.pImgArrLoading.count>0)
+    {
+        [self.imageViewLoading stopAnimating];
+        self.imageViewLoading.alpha = 0.0f;
+        
+    }
+    else
+    {
+        self.activityIndicatorView.transform = CGAffineTransformIdentity;
+        [self.activityIndicatorView stopAnimating];
+        self.activityIndicatorView.alpha = 0.0f;
+    }
 }
 -(void)actionTriggeredState
 {
     self.state = UZYSGIFPullToRefreshStateLoading;
-    
-    [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut|UIViewAnimationOptionAllowUserInteraction animations:^{
-        self.imageViewProgress.alpha = 0.0;
+
+    [UIView animateWithDuration:0.2f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut|UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionBeginFromCurrentState animations:^{
+        self.imageViewProgress.alpha = 0.0f;
+        NSLog(@"state : %d",self.isVariableSize);
+
         if(self.isVariableSize)
         {
             [self setFrameSizeByLoadingImage];
         }
         if(self.pImgArrLoading.count>0)
         {
-            self.imageViewLoading.alpha = 1.0;
+            self.imageViewLoading.alpha = 1.0f;
         }
         else
         {
-            self.activityIndicatorView.alpha = 1.0;
+            self.activityIndicatorView.alpha = 1.0f;
         }
+        
     } completion:^(BOOL finished) {
-    }];
 
+    }];
+    
     if(self.pImgArrLoading.count>0)
     {
         [self.imageViewLoading startAnimating];
@@ -303,10 +333,13 @@
     {
         [self.activityIndicatorView startAnimating];
     }
-    [self setupScrollViewContentInsetForLoadingIndicator:nil];
-    
+    [self setupScrollViewContentInsetForLoadingIndicator:^{
+
+    } animation:YES];
     if(self.pullToRefreshHandler)
         self.pullToRefreshHandler();
+    
+
     
 }
 - (void)setFrameSizeByProgressImage
@@ -332,8 +365,8 @@
 - (void)manuallyTriggered
 {
     UIEdgeInsets currentInsets = self.scrollView.contentInset;
-    currentInsets.top = self.originalTopInset + self.bounds.size.height + 20.0;
-    [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    currentInsets.top = self.originalTopInset + self.bounds.size.height + 20.0f;
+    [UIView animateWithDuration:0.3f delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.scrollView.contentOffset = CGPointMake(self.scrollView.contentOffset.x, -currentInsets.top);
     } completion:^(BOOL finished) {
         [self actionTriggeredState];
