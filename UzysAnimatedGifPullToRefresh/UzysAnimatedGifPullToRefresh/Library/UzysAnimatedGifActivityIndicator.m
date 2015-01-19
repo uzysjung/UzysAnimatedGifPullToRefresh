@@ -50,8 +50,7 @@
 {
     self.activityIndicatorStyle = UIActivityIndicatorViewStyleGray;
     self.contentMode = UIViewContentModeRedraw;
-//    self.autoresizesSubviews = YES;
-//    self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+
 
     self.state = UZYSGIFPullToRefreshStateNone;
     self.backgroundColor = [UIColor clearColor];
@@ -96,13 +95,10 @@
 #pragma mark - ScrollViewInset
 - (void)setupScrollViewContentInsetForLoadingIndicator:(actionHandler)handler animation:(BOOL)animation
 {
-//    CGFloat offset = MAX(self.scrollView.contentOffset.y * -1, 0);
+    
     UIEdgeInsets currentInsets = self.scrollView.contentInset;
     float idealOffset = self.originalTopInset + self.bounds.size.height + 20.0;
-
-
     currentInsets.top = idealOffset;
-//    currentInsets.top = MIN(offset, self.originalTopInset + self.bounds.size.height + 20.0);
 
     [self setScrollViewContentInset:currentInsets handler:handler animation:animation];
 }
@@ -116,8 +112,6 @@
 {
     if(animation)
     {
-        NSLog(@"self.frame1 %@",NSStringFromCGRect(self.frame));
-
         [UIView animateWithDuration:0.3
                               delay:0
                             options:UIViewAnimationOptionAllowUserInteraction|UIViewAnimationOptionCurveEaseOut|UIViewAnimationOptionBeginFromCurrentState
@@ -126,8 +120,6 @@
                              self.scrollView.contentOffset = CGPointMake(self.scrollView.contentOffset.x, -1*contentInset.top);
                          }
                          completion:^(BOOL finished) {
-                             NSLog(@"self.frame2 %@",NSStringFromCGRect(self.frame));
-
                              if(handler)
                                  handler();
                          }];
@@ -306,7 +298,7 @@
 
     [UIView animateWithDuration:0.2f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut|UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionBeginFromCurrentState animations:^{
         self.imageViewProgress.alpha = 0.0f;
-        NSLog(@"state : %d",self.isVariableSize);
+//        NSLog(@"state : %d",self.isVariableSize);
 
         if(self.isVariableSize)
         {
@@ -333,9 +325,11 @@
     {
         [self.activityIndicatorView startAnimating];
     }
+    
     [self setupScrollViewContentInsetForLoadingIndicator:^{
 
     } animation:YES];
+    
     if(self.pullToRefreshHandler)
         self.pullToRefreshHandler();
     

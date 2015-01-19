@@ -10,8 +10,8 @@
 #import "UzysAnimatedGifActivityIndicator.h"
 @interface UIScrollView (UzysAnimatedGifPullToRefresh)
 @property (nonatomic,assign) BOOL showPullToRefresh;
-@property (nonatomic,assign) BOOL showAlphaTransition;
-@property (nonatomic,assign) BOOL showVariableSize;
+@property (nonatomic,assign) BOOL pullToRefreshAlphaTransition;
+@property (nonatomic,assign) BOOL pullToRefreshShowVariableSize;
 @property (nonatomic,assign) UIActivityIndicatorViewStyle activityIndcatorStyle;
 @property (nonatomic,strong) UzysAnimatedGifActivityIndicator *pullToRefreshView;
 
@@ -43,7 +43,7 @@
 - (void)removePullToRefreshActionHandler;
 
 - (void)triggerPullToRefresh;
-- (void)stopRefreshAnimation;
+- (void)stopPullToRefreshAnimation;
 
 //For Orientation Changed
 - (void)addTopInsetInPortrait:(CGFloat)pInset TopInsetInLandscape:(CGFloat)lInset; // Should have called after addPullToRefreshActionHandler

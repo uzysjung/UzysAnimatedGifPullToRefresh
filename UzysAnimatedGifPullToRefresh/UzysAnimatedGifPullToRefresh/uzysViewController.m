@@ -105,7 +105,7 @@
         [weakSelf.tableView endUpdates];
         
         //Stop PullToRefresh Activity Animation
-        [weakSelf.tableView stopRefreshAnimation];
+        [weakSelf.tableView stopPullToRefreshAnimation];
         weakSelf.isLoading =NO;
     });
 }
@@ -141,14 +141,14 @@
     {
         cell.textLabel.textColor = [UIColor blackColor];
 
-        NSString *strLabel = [NSString stringWithFormat:@"Alpha Transition %@",self.tableView.showAlphaTransition ?@"ON":@"OFF"];
+        NSString *strLabel = [NSString stringWithFormat:@"Alpha Transition %@",self.tableView.pullToRefreshAlphaTransition ?@"ON":@"OFF"];
         cell.textLabel.text = strLabel;
     }
     else if([[self.pData objectAtIndex:indexPath.row] isKindOfClass:[NSString class]] &&[[self.pData objectAtIndex:indexPath.row] isEqualToString:@"4"])
     {
         cell.textLabel.textColor = [UIColor blackColor];
         
-        NSString *strLabel = [NSString stringWithFormat:@"Variable Size %@",self.tableView.showVariableSize ?@"ON":@"OFF"];
+        NSString *strLabel = [NSString stringWithFormat:@"Variable Size %@",self.tableView.pullToRefreshShowVariableSize ?@"ON":@"OFF"];
         cell.textLabel.text = strLabel;
     }
     else if([[self.pData objectAtIndex:indexPath.row] isKindOfClass:[NSString class]] &&[[self.pData objectAtIndex:indexPath.row] isEqualToString:@"5"])
@@ -228,12 +228,12 @@
     }
     else if([[self.pData objectAtIndex:indexPath.row] isKindOfClass:[NSString class]] && [[self.pData objectAtIndex:indexPath.row] isEqualToString:@"3"])
     {
-        self.tableView.showAlphaTransition = !self.tableView.showAlphaTransition;
+        self.tableView.pullToRefreshAlphaTransition = !self.tableView.pullToRefreshAlphaTransition;
        
     }
     else if([[self.pData objectAtIndex:indexPath.row] isKindOfClass:[NSString class]] && [[self.pData objectAtIndex:indexPath.row] isEqualToString:@"4"])
     {
-        self.tableView.showVariableSize = !self.tableView.showVariableSize;
+        self.tableView.pullToRefreshShowVariableSize = !self.tableView.pullToRefreshShowVariableSize;
     }
     else if([[self.pData objectAtIndex:indexPath.row] isKindOfClass:[NSString class]] && [[self.pData objectAtIndex:indexPath.row] isEqualToString:@"5"])
     {

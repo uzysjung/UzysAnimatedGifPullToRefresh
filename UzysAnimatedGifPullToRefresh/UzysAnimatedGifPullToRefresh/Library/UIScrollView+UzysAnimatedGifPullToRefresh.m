@@ -124,7 +124,7 @@ static char UIScrollViewPullToRefreshView;
 {
     [self.pullToRefreshView manuallyTriggered];
 }
-- (void)stopRefreshAnimation
+- (void)stopPullToRefreshAnimation
 {
     [self.pullToRefreshView stopIndicatorAnimation];
 }
@@ -177,19 +177,19 @@ static char UIScrollViewPullToRefreshView;
     return !self.pullToRefreshView.hidden;
 }
 
-- (void)setShowAlphaTransition:(BOOL)showAlphaTransition
+- (void)setPullToRefreshAlphaTransition:(BOOL)showAlphaTransition
 {
     self.pullToRefreshView.showAlphaTransition = showAlphaTransition;
 }
-- (BOOL)showAlphaTransition
+- (BOOL)pullToRefreshAlphaTransition
 {
     return self.pullToRefreshView.showAlphaTransition;
 }
-- (void)setShowVariableSize:(BOOL)showVariableSize
+- (void)setPullToRefreshShowVariableSize:(BOOL)showVariableSize
 {
     self.pullToRefreshView.isVariableSize = showVariableSize;
 }
--(BOOL)showVariableSize
+-(BOOL)pullToRefreshShowVariableSize
 {
     return self.pullToRefreshView.isVariableSize;
 }
