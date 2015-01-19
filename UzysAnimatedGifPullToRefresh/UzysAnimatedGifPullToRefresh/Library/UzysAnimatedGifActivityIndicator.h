@@ -38,4 +38,5 @@ typedef NS_ENUM(NSUInteger, UZYSPullToRefreshState) {
 
 - (void)setFrameSizeByProgressImage;
 - (void)setFrameSizeByLoadingImage;
+- (void)orientationChange:(UIDeviceOrientation)orientation;
 @end

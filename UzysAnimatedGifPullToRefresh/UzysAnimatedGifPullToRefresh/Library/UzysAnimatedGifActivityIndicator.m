@@ -11,6 +11,9 @@
 #import "UzysAnimatedGifPullToRefreshConfiguration.h"
 #define DEGREES_TO_RADIANS(x) (x)/180.0*M_PI
 #define RADIANS_TO_DEGREES(x) (x)/M_PI*180.0
+#define cDefaultFloatComparisonEpsilon    0.001
+#define cEqualFloats(f1, f2, epsilon)    ( fabs( (f1) - (f2) ) < epsilon )
+#define cNotEqualFloats(f1, f2, epsilon)    ( !cEqualFloats(f1, f2, epsilon) )
 
 
 @interface UzysAnimatedGifActivityIndicator()
@@ -24,7 +27,8 @@
 @property (nonatomic, assign) double progress;
 @property (nonatomic, assign) NSInteger progressThreshold;
 @property (nonatomic, assign) NSInteger LoadingFrameRate;
-
+- (void)_commonInit;
+- (void)_initAnimationView;
 @end
 @implementation UzysAnimatedGifActivityIndicator
 
@@ -87,6 +91,22 @@
     [self actionStopState];
 }
 
+- (void)_initAnimationView {
+    
+    if(self.pImgArrLoading.count>0)
+    {
+        [self.imageViewLoading stopAnimating];
+        self.imageViewLoading.alpha = 0.0f;
+        
+    }
+    else
+    {
+        self.activityIndicatorView.transform = CGAffineTransformIdentity;
+        [self.activityIndicatorView stopAnimating];
+        self.activityIndicatorView.alpha = 0.0f;
+    }
+//    self.alpha = 0.0f;
+}
 - (void)layoutSubviews{
     [super layoutSubviews];
 }
@@ -279,18 +299,7 @@
     [self resetScrollViewContentInset:^{
     } animation:YES];
     
-    if(self.pImgArrLoading.count>0)
-    {
-        [self.imageViewLoading stopAnimating];
-        self.imageViewLoading.alpha = 0.0f;
-        
-    }
-    else
-    {
-        self.activityIndicatorView.transform = CGAffineTransformIdentity;
-        [self.activityIndicatorView stopAnimating];
-        self.activityIndicatorView.alpha = 0.0f;
-    }
+    [self _initAnimationView];
 }
 -(void)actionTriggeredState
 {
@@ -349,6 +358,41 @@
     {
         self.frame = CGRectMake((self.scrollView.bounds.size.width - image1.size.width)/2, -image1.size.height, image1.size.width, image1.size.height);
     }
+}
+- (void)orientationChange:(UIDeviceOrientation)orientation {
+    if(UIDeviceOrientationIsLandscape(orientation))
+    {
+        if(cNotEqualFloats( self.landscapeTopInset , 0.0 , cDefaultFloatComparisonEpsilon))
+            self.originalTopInset = self.landscapeTopInset;
+    }
+    else
+    {
+        if(cNotEqualFloats( self.portraitTopInset , 0.0 , cDefaultFloatComparisonEpsilon))
+            self.originalTopInset = self.portraitTopInset;
+    }
+    
+    if(self.state == UZYSGIFPullToRefreshStateLoading)
+    {
+        if( self.isVariableSize ) {
+            [self setFrameSizeByLoadingImage];
+            
+        } else {
+            [self setFrameSizeByProgressImage];
+        }
+        [self setupScrollViewContentInsetForLoadingIndicator:^{
+            
+        } animation:NO];
+    }
+    else
+    {
+        [self setFrameSizeByProgressImage];
+        [self resetScrollViewContentInset:^{
+            
+        } animation:NO];
+    }
+    self.alpha = 1.0f;
+
+
 }
 
 #pragma mark - public method

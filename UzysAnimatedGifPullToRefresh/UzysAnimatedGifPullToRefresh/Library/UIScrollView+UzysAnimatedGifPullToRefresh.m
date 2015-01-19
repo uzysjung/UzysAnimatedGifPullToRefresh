@@ -19,7 +19,7 @@
 static char UIScrollViewPullToRefreshView;
 
 @implementation UIScrollView (UzysAnimatedGifPullToRefresh)
-@dynamic pullToRefreshView, showPullToRefresh;
+@dynamic pullToRefreshView, showPullToRefresh, activityIndcatorStyle;
 
 - (void)addPullToRefreshActionHandler:(actionHandler)handler
                        ProgressImages:(NSArray *)progressImages
@@ -205,27 +205,7 @@ static char UIScrollViewPullToRefreshView;
 {
     UIDevice * device = note.object;
     dispatch_async(dispatch_get_main_queue(), ^{
-        if(UIDeviceOrientationIsLandscape(device.orientation))
-        {
-            if(cNotEqualFloats( self.pullToRefreshView.landscapeTopInset , 0.0 , cDefaultFloatComparisonEpsilon))
-                self.pullToRefreshView.originalTopInset = self.pullToRefreshView.landscapeTopInset;
-        }
-        else
-        {
-            if(cNotEqualFloats( self.pullToRefreshView.portraitTopInset , 0.0 , cDefaultFloatComparisonEpsilon))
-                self.pullToRefreshView.originalTopInset = self.pullToRefreshView.portraitTopInset;
-        }
-        UIEdgeInsets currentInsets = self.contentInset;
-        currentInsets.top = self.pullToRefreshView.originalTopInset;
-        
-        if(self.pullToRefreshView.state == UZYSGIFPullToRefreshStateLoading && self.pullToRefreshView.isVariableSize)
-        {
-            [self.pullToRefreshView setFrameSizeByLoadingImage];
-        }
-        else
-        {
-            [self.pullToRefreshView setFrameSizeByProgressImage];
-        }
+        [self.pullToRefreshView orientationChange:device.orientation];
     });
 }
 

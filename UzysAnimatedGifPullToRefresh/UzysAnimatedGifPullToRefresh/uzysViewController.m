@@ -75,7 +75,7 @@
 {
     [super viewDidAppear:animated];
 //    Manually trigger
-//    [self.tableView triggerPullToRefresh];
+    [self.tableView triggerPullToRefresh];
 }
 
 #pragma mark UITableView DataManagement
@@ -213,6 +213,16 @@
 
         } ProgressImagesGifName:@"spinner_dropbox@2x.gif" LoadingImagesGifName:@"run@2x.gif" ProgressScrollThreshold:60 LoadingImageFrameRate:30];
         self.useActivityIndicator = NO;
+        
+        if(IS_IOS7)
+            [self.tableView addTopInsetInPortrait:64 TopInsetInLandscape:52];
+        else if(IS_IOS8)
+        {
+            CGFloat landscapeTopInset = 32.0;
+            if(IS_IPHONE6PLUS)
+                landscapeTopInset = 44.0;
+            [self.tableView addTopInsetInPortrait:64 TopInsetInLandscape:landscapeTopInset];
+        }
 
     }
     else if([[self.pData objectAtIndex:indexPath.row] isKindOfClass:[NSString class]] && [[self.pData objectAtIndex:indexPath.row] isEqualToString:@"2"])
@@ -225,6 +235,16 @@
             
         } ProgressImagesGifName:@"cupido@2x.gif" LoadingImagesGifName:@"jgr@2x.gif" ProgressScrollThreshold:70];
         self.useActivityIndicator = NO;
+        
+        if(IS_IOS7)
+            [self.tableView addTopInsetInPortrait:64 TopInsetInLandscape:52];
+        else if(IS_IOS8)
+        {
+            CGFloat landscapeTopInset = 32.0;
+            if(IS_IPHONE6PLUS)
+                landscapeTopInset = 44.0;
+            [self.tableView addTopInsetInPortrait:64 TopInsetInLandscape:landscapeTopInset];
+        }
     }
     else if([[self.pData objectAtIndex:indexPath.row] isKindOfClass:[NSString class]] && [[self.pData objectAtIndex:indexPath.row] isEqualToString:@"3"])
     {
