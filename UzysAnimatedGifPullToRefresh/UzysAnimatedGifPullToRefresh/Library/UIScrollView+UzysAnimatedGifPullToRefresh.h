@@ -48,4 +48,6 @@
 //For Orientation Changed
 - (void)addTopInsetInPortrait:(CGFloat)pInset TopInsetInLandscape:(CGFloat)lInset; // Should have called after addPullToRefreshActionHandler
 
+- (void)setPullToRefreshActivityIndcatorStyle:(UIActivityIndicatorViewStyle)activityIndcatorStyle;
+- (UIActivityIndicatorViewStyle)pullToRefreshActivityIndcatorStyle;
 @end

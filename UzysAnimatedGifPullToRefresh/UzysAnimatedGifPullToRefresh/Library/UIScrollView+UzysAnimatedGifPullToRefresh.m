@@ -25,7 +25,7 @@ static char UIScrollViewPullToRefreshView;
                        ProgressImages:(NSArray *)progressImages
                         LoadingImages:(NSArray *)loadingImages
               ProgressScrollThreshold:(NSInteger)threshold
-               LoadingImagesFrameRate:(NSInteger)lframe;
+               LoadingImagesFrameRate:(NSInteger)lframe
 {
     if(self.pullToRefreshView == nil)
     {
@@ -193,11 +193,11 @@ static char UIScrollViewPullToRefreshView;
 {
     return self.pullToRefreshView.isVariableSize;
 }
-- (void)setActivityIndcatorStyle:(UIActivityIndicatorViewStyle)activityIndcatorStyle
+- (void)setPullToRefreshActivityIndcatorStyle:(UIActivityIndicatorViewStyle)activityIndcatorStyle
 {
     [self.pullToRefreshView setActivityIndicatorViewStyle:activityIndcatorStyle];
 }
-- (UIActivityIndicatorViewStyle)activityIndcatorStyle
+- (UIActivityIndicatorViewStyle)pullToRefreshActivityIndcatorStyle
 {
     return self.pullToRefreshView.activityIndicatorStyle;
 }
