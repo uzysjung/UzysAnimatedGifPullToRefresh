@@ -239,6 +239,7 @@
                 self.state = UZYSGIFPullToRefreshStateTriggering;
             }
         }
+            break;
         case UZYSGIFPullToRefreshStateTriggering: //progress (2)
         {
             if(self.progress >= 1.0f)
