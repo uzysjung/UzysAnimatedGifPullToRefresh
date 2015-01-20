@@ -71,6 +71,7 @@
     {
         _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:self.activityIndicatorStyle];
         _activityIndicatorView.hidesWhenStopped = YES;
+        _activityIndicatorView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin;
         _activityIndicatorView.frame = self.bounds;
         [self addSubview:_activityIndicatorView];        
     }
