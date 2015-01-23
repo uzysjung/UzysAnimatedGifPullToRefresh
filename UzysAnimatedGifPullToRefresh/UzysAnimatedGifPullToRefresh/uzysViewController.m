@@ -158,7 +158,7 @@
         if(self.useActivityIndicator)
         {
             NSArray *IndicatorStyle = @[@"WhiteLarge",@"White",@"Gray"];
-            strLabel = [NSString stringWithFormat:@"Indcator Style %@",IndicatorStyle[self.tableView.activityIndcatorStyle]];
+            strLabel = [NSString stringWithFormat:@"Indcator Style %@",IndicatorStyle[self.tableView.pullToRefreshActivityIndcatorStyle]];
         }
         else
         {
@@ -261,7 +261,7 @@
         styleCnt++;
         if(styleCnt >2)
             styleCnt = 0;
-        self.tableView.activityIndcatorStyle = styleCnt;
+        self.tableView.pullToRefreshActivityIndcatorStyle = styleCnt;
     }
 
     [self.tableView reloadData];
