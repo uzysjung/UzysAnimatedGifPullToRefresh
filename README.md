@@ -89,6 +89,8 @@ adding PullToRefreshActionHandler
 // iOS 7 LandScape Navigationbar size 52 , Portrait Navigationbar size 64  
 
 ```
+## Information
+ - Please Visit [UzysAnimatedGifLoadMore](https://github.com/uzysjung/UzysAnimatedGifLoadMore)  
 
 ## Contact
  - [Uzys.net](http://uzys.net)
