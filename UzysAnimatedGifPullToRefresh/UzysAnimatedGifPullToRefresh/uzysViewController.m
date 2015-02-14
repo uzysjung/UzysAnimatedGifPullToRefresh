@@ -57,8 +57,6 @@
             landscapeTopInset = 44.0;
         [self.tableView addTopInsetInPortrait:64 TopInsetInLandscape:landscapeTopInset];
     }
-
-    
 }
 - (void)didReceiveMemoryWarning
 {
