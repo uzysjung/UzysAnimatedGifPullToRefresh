@@ -213,6 +213,7 @@
     {
         [self setNeedsLayout];
         [self setNeedsDisplay];
+        self.center = CGPointMake(self.scrollView.center.x, self.center.y);
     }
     else if([keyPath isEqualToString:@"frame"])
     {
@@ -227,7 +228,7 @@
     static double prevProgress;
     CGFloat yOffset = contentOffset.y;
     self.progress = ((yOffset+ self.originalTopInset + StartPosition)/(-self.progressThreshold ));
-    self.center = CGPointMake(self.center.x, (contentOffset.y+ self.originalTopInset)/2);
+    self.center = CGPointMake(self.scrollView.center.x, (contentOffset.y+ self.originalTopInset)/2);
 
     switch (_state) {
         case UZYSGIFPullToRefreshStateStopped: //finish (1)
