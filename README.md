@@ -89,6 +89,12 @@ adding PullToRefreshActionHandler
 // iOS 7 LandScape Navigationbar size 52 , Portrait Navigationbar size 64  
 
 ```
+#### Non Translucent Navigation Controller.
+``` objective-c
+self.navigationController.navigationBar.translucent= NO; 
+[self.tableView addTopInsetInPortrait:0 TopInsetInLandscape:0];
+
+```
 ## Information
  - Please Visit [UzysAnimatedGifLoadMore](https://github.com/uzysjung/UzysAnimatedGifLoadMore)  
 
