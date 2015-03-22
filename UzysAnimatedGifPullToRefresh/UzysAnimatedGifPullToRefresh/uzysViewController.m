@@ -85,6 +85,7 @@
     [self.pData addObject:@"3"];
     [self.pData addObject:@"4"];
     [self.pData addObject:@"5"];
+    [self.pData addObject:@"6"];
     
     for(int i=0; i<20; i++)
         [self.pData addObject:[NSDate dateWithTimeIntervalSinceNow:-(i*100)]];
@@ -161,6 +162,20 @@
         else
         {
             strLabel = @"UIActivityIndicator non-exist. (Tap \'Progress Image by Array\')";
+        }
+        cell.textLabel.text = strLabel;
+    }
+    else if([[self.pData objectAtIndex:indexPath.row] isKindOfClass:[NSString class]] &&[[self.pData objectAtIndex:indexPath.row] isEqualToString:@"6"])
+    {
+        cell.textLabel.textColor = [UIColor blackColor];
+        NSString *strLabel;
+        if(self.navigationController.navigationBar.translucent)
+        {
+            strLabel = @"navigationBar translucent NO";
+        }
+        else
+        {
+            strLabel = @"navigationBar translucent YES";
         }
         cell.textLabel.text = strLabel;
     }
@@ -261,7 +276,38 @@
             styleCnt = 0;
         self.tableView.pullToRefreshActivityIndcatorStyle = styleCnt;
     }
+    else if([[self.pData objectAtIndex:indexPath.row] isKindOfClass:[NSString class]] && [[self.pData objectAtIndex:indexPath.row] isEqualToString:@"6"])
+    {
+        [self.tableView removePullToRefreshActionHandler];
 
+        
+        __weak typeof(self) weakSelf =self;
+        [self.tableView addPullToRefreshActionHandler:^{
+            [weakSelf insertRowAtTop];
+            
+        } ProgressImagesGifName:@"cupido@2x.gif" LoadingImagesGifName:@"jgr@2x.gif" ProgressScrollThreshold:70];
+
+        
+        if(self.navigationController.navigationBar.translucent)
+        {
+            self.navigationController.navigationBar.translucent = NO;
+            [self.tableView addTopInsetInPortrait:0 TopInsetInLandscape:0];
+        }
+        else
+        {
+            self.navigationController.navigationBar.translucent = YES;
+            if(IS_IOS7)
+                [self.tableView addTopInsetInPortrait:64 TopInsetInLandscape:52];
+            else if(IS_IOS8)
+            {
+                CGFloat landscapeTopInset = 32.0;
+                if(IS_IPHONE6PLUS)
+                    landscapeTopInset = 44.0;
+                [self.tableView addTopInsetInPortrait:64 TopInsetInLandscape:landscapeTopInset];
+            }
+        }
+
+    }
     [self.tableView reloadData];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
