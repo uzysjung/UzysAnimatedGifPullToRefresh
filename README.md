@@ -14,6 +14,8 @@ Add PullToRefresh using animated GIF to any scrollView with just simple code
 * Support CocoaPods.
 * ARC Only (if your project doesn't use ARC , Project -> Build Phases Tab -> Compile Sources Section -> Double Click on the file name Then add -fno-objc-arc to the popup window.)
 
+## Information
+ - Please Visit [UzysAnimatedGifLoadMore](https://github.com/uzysjung/UzysAnimatedGifLoadMore)  
 
 ## Installation
 1. UzysAnimatedGifPullToRefresh in your app is via CocoaPods.
@@ -95,8 +97,6 @@ self.navigationController.navigationBar.translucent= NO;
 [self.tableView addTopInsetInPortrait:0 TopInsetInLandscape:0];
 
 ```
-## Information
- - Please Visit [UzysAnimatedGifLoadMore](https://github.com/uzysjung/UzysAnimatedGifLoadMore)  
 
 ## Contact
  - [Uzys.net](http://uzys.net)
