@@ -131,7 +131,7 @@
 }
 - (void)setScrollViewContentInset:(UIEdgeInsets)contentInset handler:(actionHandler)handler animation:(BOOL)animation
 {
-    NSLog(@"offset %f",self.scrollView.contentOffset.y);
+//    NSLog(@"offset %f",self.scrollView.contentOffset.y);
     if(animation)
     {
         [UIView animateWithDuration:0.3
