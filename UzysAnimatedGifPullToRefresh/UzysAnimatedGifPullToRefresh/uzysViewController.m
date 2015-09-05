@@ -43,7 +43,8 @@
     
     __weak typeof(self) weakSelf =self;
     [self.tableView addPullToRefreshActionHandler:^{
-        [weakSelf insertRowAtTop];
+        typeof(self) strongSelf = weakSelf;
+        [strongSelf insertRowAtTop];
         
     } ProgressImagesGifName:@"spinner_dropbox@2x.gif" LoadingImagesGifName:@"run@2x.gif" ProgressScrollThreshold:70 LoadingImageFrameRate:30];
     
@@ -97,15 +98,15 @@
     int64_t delayInSeconds = 2.2;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-    
-        [weakSelf.tableView beginUpdates];
-        [weakSelf.pData insertObject:[NSDate date] atIndex:0];
-        [weakSelf.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationBottom];
-        [weakSelf.tableView endUpdates];
+        typeof(self) strongSelf = weakSelf;
+        [strongSelf.tableView beginUpdates];
+        [strongSelf.pData insertObject:[NSDate date] atIndex:0];
+        [strongSelf.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationBottom];
+        [strongSelf.tableView endUpdates];
         
         //Stop PullToRefresh Activity Animation
-        [weakSelf.tableView stopPullToRefreshAnimation];
-        weakSelf.isLoading =NO;
+        [strongSelf.tableView stopPullToRefreshAnimation];
+        strongSelf.isLoading =NO;
     });
 }
 
@@ -211,7 +212,8 @@
             [progress addObject:[UIImage imageNamed:fname]];
         }
         [self.tableView addPullToRefreshActionHandler:^{
-            [weakSelf insertRowAtTop];
+            typeof(self) strongSelf = weakSelf;
+            [strongSelf insertRowAtTop];
 
         } ProgressImages:progress ProgressScrollThreshold:60];
         self.useActivityIndicator = YES;
@@ -222,7 +224,8 @@
         
         __weak typeof(self) weakSelf =self;
         [self.tableView addPullToRefreshActionHandler:^{
-            [weakSelf insertRowAtTop];
+            typeof(self) strongSelf = weakSelf;
+            [strongSelf insertRowAtTop];
 
         } ProgressImagesGifName:@"spinner_dropbox@2x.gif" LoadingImagesGifName:@"run@2x.gif" ProgressScrollThreshold:60 LoadingImageFrameRate:30];
         self.useActivityIndicator = NO;
@@ -244,7 +247,8 @@
         
         __weak typeof(self) weakSelf =self;
         [self.tableView addPullToRefreshActionHandler:^{
-            [weakSelf insertRowAtTop];
+            typeof(self) strongSelf = weakSelf;
+            [strongSelf insertRowAtTop];
             
         } ProgressImagesGifName:@"cupido@2x.gif" LoadingImagesGifName:@"jgr@2x.gif" ProgressScrollThreshold:70];
         self.useActivityIndicator = NO;
@@ -283,7 +287,8 @@
         
         __weak typeof(self) weakSelf =self;
         [self.tableView addPullToRefreshActionHandler:^{
-            [weakSelf insertRowAtTop];
+            typeof(self) strongSelf = weakSelf;
+            [strongSelf insertRowAtTop];
             
         } ProgressImagesGifName:@"cupido@2x.gif" LoadingImagesGifName:@"jgr@2x.gif" ProgressScrollThreshold:70];
 
