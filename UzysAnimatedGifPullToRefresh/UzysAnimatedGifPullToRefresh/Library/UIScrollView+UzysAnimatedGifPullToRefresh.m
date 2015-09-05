@@ -218,6 +218,10 @@ static char UIScrollViewPullToRefreshView;
         [self.pullToRefreshView orientationChange:device.orientation];
     });
 }
-
+- (void)willMoveToSuperview:(UIView *)newSuperview {
+    if(newSuperview == nil) {
+        [self removePullToRefreshActionHandler];
+    }
+}
 
 @end

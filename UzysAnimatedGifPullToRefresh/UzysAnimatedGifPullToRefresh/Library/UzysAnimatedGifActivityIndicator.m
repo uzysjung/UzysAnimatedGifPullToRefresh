@@ -203,7 +203,8 @@
     self.imageViewLoading = nil;
     self.imageViewProgress = nil;
     self.pImgArrLoading = nil;
-    self.imageViewProgress = nil;
+    self.pImgArrProgress = nil;
+    self.activityIndicatorView = nil;
     
 }
 #pragma mark - KVO
