@@ -36,7 +36,8 @@ adding PullToRefreshActionHandler
 {
     __weak typeof(self) weakSelf =self;
     [self.tableView addPullToRefreshActionHandler:^{
-        [weakSelf insertRowAtTop];
+        typeof(self) strongSelf = weakSelf;
+        [strongSelf insertRowAtTop];
     }
     ProgressImagesGifName:@"spinner_dropbox@2x.gif" 
     LoadingImagesGifName:@"run@2x.gif" 
