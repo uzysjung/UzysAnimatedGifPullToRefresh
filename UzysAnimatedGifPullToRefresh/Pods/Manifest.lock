@@ -5,6 +5,8 @@ DEPENDENCIES:
   - AnimatedGIFImageSerialization (~> 0.2.0)
 
 SPEC CHECKSUMS:
-  AnimatedGIFImageSerialization: ee2b8f04ec1143dd196cac160a7b119753891825
+  AnimatedGIFImageSerialization: b0f0cfe71eac1ee45a3d57ae533c23b8e6f29501
 
-COCOAPODS: 0.33.1
+PODFILE CHECKSUM: 0126e7974555640c060d3b0c88fe938e1fad2012
+
+COCOAPODS: 1.0.1

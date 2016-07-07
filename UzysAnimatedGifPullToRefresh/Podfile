@@ -1,3 +1,5 @@
 platform :ios, '6.1'
 
-pod 'AnimatedGIFImageSerialization', '~> 0.2.0'
+target 'UzysAnimatedGifPullToRefresh' do
+	pod 'AnimatedGIFImageSerialization', '~> 0.2.0'
+end
